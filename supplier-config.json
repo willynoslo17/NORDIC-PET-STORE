@@ -6,8 +6,8 @@
     "catalogMode": "live-with-local-fallback"
   },
   "germanDrop": {
-    "enabled": false,
-    "mode": "not-authorized"
+    "enabled": true,
+    "mode": "shared-account-sourcing"
   },
   "markets": ["NO", "EU", "PE"]
 }
