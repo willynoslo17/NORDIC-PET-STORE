@@ -1,873 +1,220 @@
-const SELECTED: any[] = [
-  {
-    "id": "printful-pet-supplies-1",
-    "sku": "PFL-PET-TOTE-PORTRAIT",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Custom Pet Portrait Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.5,
-    "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-2",
-    "sku": "PFL-PET-TOTE-WALK",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Paw Patrol Walk Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 21.9,
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-3",
-    "sku": "PFL-PET-TOTE-CAT",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Cat Caf\u00e9 Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 23.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-4",
-    "sku": "PFL-PET-TOTE-PARK",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Dog Park Essentials Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 20.9,
-    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-5",
-    "sku": "PFL-PET-TEE-MOM",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Dog Mom Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-6",
-    "sku": "PFL-PET-TEE-DAD",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Dog Dad Unisex Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.9,
-    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-7",
-    "sku": "PFL-PET-TEE-PAW",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Paw Print Classic Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 26.9,
-    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-8",
-    "sku": "PFL-PET-TEE-ADOPT",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Adopt Don't Shop Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.5,
-    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-9",
-    "sku": "PFL-PET-TEE-FELINE",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Feline Fine T-Shirt",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 25.9,
-    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-10",
-    "sku": "PFL-PET-TOTE-TREATS",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Treats On Board Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 19.9,
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-11",
-    "sku": "PFL-PET-TEE-BFF",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Best Friend Forever Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 29.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-12",
-    "sku": "PFL-PET-TOTE-CLUB",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Nordic Pets Walk Club Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 24.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-13",
-    "sku": "PFL-PET-TOTE-WEEKEND",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Weekend Walk Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.9,
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-14",
-    "sku": "PFL-PET-TEE-RESCUE",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Rescue Hero Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-15",
-    "sku": "PFL-PET-TOTE-HUNTER",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Treat Hunter Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 21.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-16",
-    "sku": "PFL-PET-TEE-WHISKER",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Whisker Club Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-17",
-    "sku": "PFL-PET-TOTE-SNUGGLE",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Snuggle Pack Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.9,
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-18",
-    "sku": "PFL-PET-TEE-GOODBOY",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Good Boy Club Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.5,
-    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-19",
-    "sku": "PFL-PET-TOTE-LITTER",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Litter Life Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 21.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-20",
-    "sku": "PFL-PET-TEE-PURR",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Purr Mode Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 26.9,
-    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-21",
-    "sku": "PFL-PET-TOTE-FETCH",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Fetch Forever Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 23.9,
-    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-22",
-    "sku": "PFL-PET-TEE-RESCUE2",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Rescue Squad Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 29.5,
-    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-23",
-    "sku": "PFL-PET-TOTE-BARK",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Bark Park Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 24.5,
-    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-24",
-    "sku": "PFL-PET-TEE-CATDAD",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Cat Dad Classic Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-25",
-    "sku": "PFL-PET-TOTE-PUPPY",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Puppy Love Market Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch"
-  },
-  {
-    "id": "printful-pet-supplies-26",
-    "sku": "PFL-PET-TEE-SOFTPAW",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Soft Paw Print Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-27",
-    "sku": "PFL-PET-TOTE-WALK2",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Walk Essentials Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-28",
-    "sku": "PFL-PET-TEE-TAIL",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Happy Tail Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-29",
-    "sku": "PFL-PET-TOTE-TREAT2",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Treat Jar Day Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 21.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-30",
-    "sku": "PFL-PET-TEE-NAP",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Nap Club Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 26.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-31",
-    "sku": "PFL-PET-TOTE-LEASH",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Leash Life Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 23.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-32",
-    "sku": "PFL-PET-TEE-BEST",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Best Friend Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 29.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-33",
-    "sku": "PFL-PET-TOTE-PORTRAIT2",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Pet Portrait Day Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 24.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-34",
-    "sku": "PFL-PET-TEE-MUDDY",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Muddy Paws Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-35",
-    "sku": "PFL-PET-TOTE-ZOO",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Weekend Zoo Trip Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 20.9,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-36",
-    "sku": "PFL-PET-TEE-CATNAP",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Cat Nap Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 25.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-37",
-    "sku": "PFL-PET-TOTE-GROOM",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Groom Day Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.9,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-38",
-    "sku": "PFL-PET-TEE-PARK",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Park Regular Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-39",
-    "sku": "PFL-PET-TOTE-BLANKET",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Soft Blanket Pet Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 23.9,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-40",
-    "sku": "PFL-PET-TEE-WOOF",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Woof Mode Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 26.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-41",
-    "sku": "PFL-PET-TOTE-SNACK",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Snack Stash Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 21.9,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-42",
-    "sku": "PFL-PET-TEE-GENTLE",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Gentle Giant Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 29.9,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-43",
-    "sku": "PFL-PET-TOTE-RAIN",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Rain Walk Canvas Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 24.9,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-44",
-    "sku": "PFL-PET-TEE-COUCH",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Couch Critter Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 25.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-45",
-    "sku": "PFL-PET-TOTE-VET",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Vet Visit Day Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 22.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-46",
-    "sku": "PFL-PET-TEE-SUNNY",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Sunny Spot Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 27.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-47",
-    "sku": "PFL-PET-TOTE-TRAIL",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Trail Companion Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 23.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-48",
-    "sku": "PFL-PET-TEE-COLLAR",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Soft Collar Club Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 28.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-49",
-    "sku": "PFL-PET-TOTE-HOME",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Homecoming Pet Tote",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 7.1,
-    "suggestedRetailUsd": 25.5,
-    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tote",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  },
-  {
-    "id": "printful-pet-supplies-50",
-    "sku": "PFL-PET-TEE-FOREVER",
-    "supplier": "Printful",
-    "provider": "printful",
-    "printifyProductId": "",
-    "printifyVariantId": "",
-    "name": "Forever Home Soft Tee",
-    "category": "Pet Merch",
-    "supplierPriceUsd": 9.4,
-    "suggestedRetailUsd": 30.5,
-    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
-    "matchType": "tee",
-    "sector": "pet supplies",
-    "compliance": "EU/Nordic POD merch only \u2014 apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims"
-  }
-];
+const BASE = "https://api.printful.com";
+
 const SECTOR_ALIASES: Record<string, string> = {
-  "beauty": "beauty",
-  "perfume": "beauty",
-  "perfumes": "beauty",
-  "skincare": "beauty",
-  "toys": "toys",
-  "kids": "toys",
-  "kid": "toys",
-  "children": "toys",
-  "electronics": "electronics",
-  "tech": "electronics",
-  "technology": "electronics",
-  "pet supplies": "pet supplies",
-  "pets": "pet supplies",
-  "pet": "pet supplies",
-  "home living": "home living",
-  "home": "home living",
-  "living": "home living",
-  "fitness": "fitness",
-  "outdoor": "fitness",
-  "sports": "fitness",
-  "solar energy": "solar energy",
-  "energy": "solar energy",
-  "solar": "solar energy",
-  "car accessories": "car accessories",
-  "car": "car accessories",
-  "auto": "car accessories",
-  "automotive": "car accessories"
+  beauty: "beauty", perfume: "beauty", perfumes: "beauty", skincare: "beauty",
+  toys: "toys", kids: "toys", kid: "toys", children: "toys",
+  electronics: "electronics", tech: "electronics", technology: "electronics",
+  "pet supplies": "pet supplies", pets: "pet supplies", pet: "pet supplies",
+  "home living": "home living", home: "home living", living: "home living",
+  fitness: "fitness", outdoor: "fitness", sports: "fitness",
+  "solar energy": "solar energy", energy: "solar energy", solar: "solar energy",
+  "car accessories": "car accessories", car: "car accessories", auto: "car accessories", automotive: "car accessories",
 };
+
+/** Printful catalog category IDs chosen per Nordic sector (POD merch only). */
+const SECTOR_CATEGORIES: Record<string, number[]> = {
+  beauty: [48, 195, 29, 2, 258, 202],
+  toys: [3, 228, 55, 105, 202],
+  electronics: [244, 245, 250, 243, 251, 198, 202],
+  "pet supplies": [48, 49, 29, 16, 202],
+  "home living": [55, 56, 195, 258, 252, 230, 198],
+  fitness: [28, 7, 29, 98, 271, 221],
+  "solar energy": [55, 56, 48, 21, 202],
+  "car accessories": [42, 40, 15, 93, 28, 221],
+};
+
+const TYPE_MARKUP: Record<string, number> = {
+  default: 2.35,
+};
+
 function money(value: unknown) {
   const amount = Number(value);
   return Number.isFinite(amount) && amount > 0 ? Math.round(amount * 100) / 100 : 0;
 }
+
 function resolveSector(raw: string) {
   const key = String(raw || "").toLowerCase().trim();
-  if (!key) return SELECTED[0]?.sector || "beauty";
+  if (!key) return "beauty";
   if (SECTOR_ALIASES[key]) return SECTOR_ALIASES[key];
   for (const [alias, sector] of Object.entries(SECTOR_ALIASES)) {
     if (key.includes(alias) || alias.includes(key)) return sector;
   }
-  return key;
+  return SECTOR_ALIASES[key] ? SECTOR_ALIASES[key] : (SECTOR_CATEGORIES[key] ? key : "beauty");
 }
-function curated(sector: string) {
-  return SELECTED
-    .filter((p) => !p.sector || String(p.sector).toLowerCase() === sector)
-    .map((p, i) => ({
-      id: String(p.id || `printful-selected-${i}`),
-      sku: String(p.sku || ""),
-      supplier: "Printful",
-      provider: "printful",
-      name: String(p.name || "Printful product"),
-      category: String(p.category || sector),
-      supplierPriceUsd: money(p.supplierPriceUsd) || money(p.suggestedRetailUsd),
-      suggestedRetailUsd: money(p.suggestedRetailUsd) || money(p.supplierPriceUsd),
-      image: String(p.image || ""),
-      sector: String(p.sector || sector),
-    }))
-    .filter((p) => p.suggestedRetailUsd > 0 && p.name);
+
+function authHeaders(token?: string, storeId?: string) {
+  const headers: Record<string, string> = { "User-Agent": "NordicStore/1.0" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  if (storeId) headers["X-PF-Store-Id"] = storeId;
+  return headers;
 }
+
+function normalizeCatalog(row: any, index: number, sector: string, costHint = 0) {
+  const cost = money(costHint);
+  const retail = cost > 0 ? money(cost * (TYPE_MARKUP.default || 2.35)) : 0;
+  return {
+    id: String(row?.id || `printful-catalog-${index}`),
+    sku: `PFL-${row?.id || index}`,
+    supplier: "Printful",
+    provider: "printful",
+    printfulProductId: String(row?.id || ""),
+    name: String(row?.title || row?.name || "Printful product"),
+    category: String(row?.type_name || row?.type || sector),
+    brand: String(row?.brand || "Printful"),
+    supplierPriceUsd: cost || retail,
+    suggestedRetailUsd: retail || cost,
+    image: String(row?.image || ""),
+    sector,
+    compliance: "EU/Nordic POD merch only — apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims",
+  };
+}
+
+function normalizeStore(row: any, index: number, sector: string) {
+  const sync = row?.sync_product || row;
+  const retail = money(sync?.retail_price || row?.retail_price);
+  return {
+    id: String(sync?.id || `printful-store-${index}`),
+    sku: String(sync?.external_id || sync?.id || ""),
+    supplier: "Printful",
+    provider: "printful",
+    printfulProductId: String(sync?.id || ""),
+    name: String(sync?.name || "Printful product"),
+    category: "Printful",
+    brand: "Printful",
+    supplierPriceUsd: retail,
+    suggestedRetailUsd: retail,
+    image: String(sync?.thumbnail_url || sync?.image || ""),
+    sector,
+    compliance: "EU/Nordic POD merch only — apparel/poster/mug/tote/case/cap; no cosmetics liquids, no toy CE claims, no health claims",
+  };
+}
+
+async function loadStoreProducts(headers: Record<string, string>, sector: string) {
+  const url = new URL(BASE + "/store/products");
+  url.searchParams.set("limit", "50");
+  url.searchParams.set("offset", "0");
+  const response = await fetch(url, { headers });
+  if (!response.ok) return [] as any[];
+  const result: any = await response.json().catch(() => ({}));
+  const list = Array.isArray(result?.result) ? result.result : [];
+  const out = [];
+  for (const row of list.slice(0, 50)) {
+    const base = normalizeStore(row, out.length, sector);
+    try {
+      const detailRes = await fetch(`${BASE}/store/products/${base.id}`, { headers });
+      const detail: any = await detailRes.json().catch(() => ({}));
+      if (detailRes.ok) {
+        const variants = Array.isArray(detail?.result?.sync_variants) ? detail.result.sync_variants : [];
+        const priced = variants.find((v: any) => money(v?.retail_price) > 0) || variants[0];
+        const retail = money(priced?.retail_price);
+        if (retail > 0) {
+          base.supplierPriceUsd = retail;
+          base.suggestedRetailUsd = retail;
+        }
+        base.sku = String(priced?.sku || base.sku);
+        const preview = priced?.files?.find?.((f: any) => f?.type === "preview")?.preview_url;
+        if (preview) base.image = String(preview);
+      }
+    } catch (_) {}
+    if (base.name && base.suggestedRetailUsd > 0) out.push(base);
+  }
+  return out;
+}
+
+async function loadCatalogByCategories(headers: Record<string, string>, sector: string) {
+  const cats = SECTOR_CATEGORIES[sector] || SECTOR_CATEGORIES.beauty;
+  const seen = new Set<string>();
+  const collected: any[] = [];
+  const fallbackCats = [229, 4, 5, 6, 1];
+  const allCats = [...cats, ...fallbackCats.filter((c) => !cats.includes(c))];
+  for (const categoryId of allCats) {
+    if (collected.length >= 60) break;
+    const url = new URL(BASE + "/products");
+    url.searchParams.set("category_id", String(categoryId));
+    const response = await fetch(url, { headers });
+    if (!response.ok) continue;
+    const result: any = await response.json().catch(() => ({}));
+    const list = Array.isArray(result?.result) ? result.result : [];
+    for (const row of list) {
+      const id = String(row?.id || "");
+      if (!id || seen.has(id) || row?.is_discontinued) continue;
+      seen.add(id);
+      collected.push(row);
+      if (collected.length >= 60) break;
+    }
+  }
+  // Price a subset in parallel (first 50)
+  const slice = collected.slice(0, 50);
+  const priced = await Promise.all(
+    slice.map(async (row, index) => {
+      let cost = 0;
+      try {
+        const detailRes = await fetch(`${BASE}/products/${row.id}`, { headers });
+        if (detailRes.ok) {
+          const detail: any = await detailRes.json();
+          const variants = Array.isArray(detail?.result?.variants) ? detail.result.variants : [];
+          const inStock = variants.find((v: any) => v?.in_stock && money(v?.price) > 0) || variants.find((v: any) => money(v?.price) > 0);
+          cost = money(inStock?.price);
+          if (inStock?.image) row.image = inStock.image;
+        }
+      } catch (_) {}
+      const item = normalizeCatalog(row, index, sector, cost);
+      if (!item.suggestedRetailUsd) {
+        item.supplierPriceUsd = 12;
+        item.suggestedRetailUsd = 28.9;
+      }
+      return item;
+    })
+  );
+  return priced.filter((p) => p.name && p.suggestedRetailUsd > 0).slice(0, 50);
+}
+
 export async function onRequestGet(context: any) {
   const url = new URL(context.request.url);
   const wanted = url.searchParams.get("q") || url.searchParams.get("sector") || "";
-  const defaultSector = String(SELECTED[0]?.sector || "beauty");
-  const sector = resolveSector(wanted || defaultSector);
-  const headers = { "access-control-allow-origin": "*", "cache-control": "public, max-age=60" };
-  const products = curated(sector).slice(0, 50);
-  return Response.json(
-    { ok: true, supplier: "printful", sector, query: sector, products, count: products.length, source: "printful-selected-primary", markets: ["NO", "EU", "PE"] },
-    { status: products.length ? 200 : 503, headers }
-  );
+  const sector = resolveSector(wanted || "beauty");
+  const headersOut = { "access-control-allow-origin": "*", "cache-control": "public, max-age=300" };
+  const token = context.env.PRINTFUL_API_TOKEN ? String(context.env.PRINTFUL_API_TOKEN) : "";
+  const storeId = context.env.PRINTFUL_STORE_ID ? String(context.env.PRINTFUL_STORE_ID) : "";
+  const headers = authHeaders(token || undefined, storeId || undefined);
+
+  try {
+    if (token) {
+      const storeProducts = await loadStoreProducts(headers, sector);
+      if (storeProducts.length >= 8) {
+        return Response.json({
+          ok: true,
+          supplier: "Printful",
+          sector,
+          query: sector,
+          products: storeProducts.slice(0, 50),
+          count: Math.min(storeProducts.length, 50),
+          source: "printful-live-store",
+          markets: ["NO", "EU", "PE"],
+          compliance: "EU/Nordic POD merch",
+        }, { headers: headersOut });
+      }
+    }
+
+    const catalog = await loadCatalogByCategories(headers, sector);
+    return Response.json({
+      ok: true,
+      supplier: "Printful",
+      sector,
+      query: sector,
+      products: catalog,
+      count: catalog.length,
+      source: "printful-live-catalog",
+      markets: ["NO", "EU", "PE"],
+      compliance: "EU/Nordic POD merch",
+    }, { status: catalog.length ? 200 : 503, headers: headersOut });
+  } catch (error) {
+    return Response.json({
+      error: error instanceof Error ? error.message : "Printful request failed",
+      products: [],
+      supplier: "Printful",
+      sector,
+      source: "printful-error",
+    }, { status: 502, headers: headersOut });
+  }
 }
