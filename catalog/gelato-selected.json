@@ -12,7 +12,8 @@
     "suggestedRetailUsd": 22.5,
     "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-2",
@@ -27,7 +28,8 @@
     "suggestedRetailUsd": 21.9,
     "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-3",
@@ -42,7 +44,8 @@
     "suggestedRetailUsd": 23.5,
     "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-4",
@@ -57,7 +60,8 @@
     "suggestedRetailUsd": 20.9,
     "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-5",
@@ -72,7 +76,8 @@
     "suggestedRetailUsd": 28.9,
     "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-6",
@@ -87,7 +92,8 @@
     "suggestedRetailUsd": 28.9,
     "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-7",
@@ -102,7 +108,8 @@
     "suggestedRetailUsd": 26.9,
     "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-8",
@@ -117,7 +124,8 @@
     "suggestedRetailUsd": 27.5,
     "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-9",
@@ -132,7 +140,8 @@
     "suggestedRetailUsd": 25.9,
     "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-10",
@@ -147,7 +156,8 @@
     "suggestedRetailUsd": 19.9,
     "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-11",
@@ -162,7 +172,8 @@
     "suggestedRetailUsd": 29.5,
     "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-12",
@@ -177,7 +188,8 @@
     "suggestedRetailUsd": 24.5,
     "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-13",
@@ -192,7 +204,8 @@
     "suggestedRetailUsd": 22.9,
     "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-14",
@@ -207,7 +220,8 @@
     "suggestedRetailUsd": 28.5,
     "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
     "matchType": "tee",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
   },
   {
     "id": "gelato-pet-supplies-15",
@@ -222,6 +236,247 @@
     "suggestedRetailUsd": 21.5,
     "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
-    "sector": "pet supplies"
+    "sector": "pet supplies",
+    "printifyShopId": "28847802"
+  },
+  {
+    "id": "gelato-pet-supplies-16",
+    "sku": "GEL-PET-TEE-WHISKER",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tee",
+    "matchTypes": [
+      "tee",
+      "tote"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Whisker Club Soft Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 27.9,
+    "priceNOK": 315,
+    "priceEUR": 27.9,
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-17",
+    "sku": "GEL-PET-TOTE-SNUGGLE",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tote",
+    "matchTypes": [
+      "tote",
+      "tee"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Snuggle Pack Canvas Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 22.9,
+    "priceNOK": 259,
+    "priceEUR": 22.9,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-18",
+    "sku": "GEL-PET-TEE-GOODBOY",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tee",
+    "matchTypes": [
+      "tee",
+      "tote"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Good Boy Club Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 28.5,
+    "priceNOK": 322,
+    "priceEUR": 28.5,
+    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-19",
+    "sku": "GEL-PET-TOTE-LITTER",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tote",
+    "matchTypes": [
+      "tote",
+      "tee"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Litter Life Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 21.5,
+    "priceNOK": 243,
+    "priceEUR": 21.5,
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-20",
+    "sku": "GEL-PET-TEE-PURR",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tee",
+    "matchTypes": [
+      "tee",
+      "tote"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Purr Mode Soft Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 26.9,
+    "priceNOK": 304,
+    "priceEUR": 26.9,
+    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-21",
+    "sku": "GEL-PET-TOTE-FETCH",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tote",
+    "matchTypes": [
+      "tote",
+      "tee"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Fetch Forever Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 23.9,
+    "priceNOK": 270,
+    "priceEUR": 23.9,
+    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-22",
+    "sku": "GEL-PET-TEE-RESCUE2",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tee",
+    "matchTypes": [
+      "tee",
+      "tote"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Rescue Squad Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 29.5,
+    "priceNOK": 333,
+    "priceEUR": 29.5,
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-23",
+    "sku": "GEL-PET-TOTE-BARK",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tote",
+    "matchTypes": [
+      "tote",
+      "tee"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Bark Park Canvas Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 24.5,
+    "priceNOK": 277,
+    "priceEUR": 24.5,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-24",
+    "sku": "GEL-PET-TEE-CATDAD",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tee",
+    "matchTypes": [
+      "tee",
+      "tote"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Cat Dad Classic Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 27.5,
+    "priceNOK": 311,
+    "priceEUR": 27.5,
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
+  },
+  {
+    "id": "gelato-pet-supplies-25",
+    "sku": "GEL-PET-TOTE-PUPPY",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "sector": "pet supplies",
+    "matchType": "tote",
+    "matchTypes": [
+      "tote",
+      "tee"
+    ],
+    "printifyShopId": "28847802",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Puppy Love Market Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 22.5,
+    "priceNOK": 254,
+    "priceEUR": 22.5,
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
+    "status": "sector-selected-curated",
+    "notes": "Sector pet supplies curated Printify-facing item."
   }
 ]

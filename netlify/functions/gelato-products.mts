@@ -223,9 +223,158 @@ const SELECTED: any[] = [
     "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
     "matchType": "tote",
     "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-16",
+    "sku": "GEL-PET-TEE-WHISKER",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Whisker Club Soft Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 27.9,
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tee",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-17",
+    "sku": "GEL-PET-TOTE-SNUGGLE",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Snuggle Pack Canvas Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 22.9,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tote",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-18",
+    "sku": "GEL-PET-TEE-GOODBOY",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Good Boy Club Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 28.5,
+    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tee",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-19",
+    "sku": "GEL-PET-TOTE-LITTER",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Litter Life Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 21.5,
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tote",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-20",
+    "sku": "GEL-PET-TEE-PURR",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Purr Mode Soft Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 26.9,
+    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tee",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-21",
+    "sku": "GEL-PET-TOTE-FETCH",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Fetch Forever Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 23.9,
+    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tote",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-22",
+    "sku": "GEL-PET-TEE-RESCUE2",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Rescue Squad Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 29.5,
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tee",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-23",
+    "sku": "GEL-PET-TOTE-BARK",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Bark Park Canvas Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 24.5,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tote",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-24",
+    "sku": "GEL-PET-TEE-CATDAD",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Cat Dad Classic Tee",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 9.4,
+    "suggestedRetailUsd": 27.5,
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tee",
+    "sector": "pet supplies"
+  },
+  {
+    "id": "gelato-pet-supplies-25",
+    "sku": "GEL-PET-TOTE-PUPPY",
+    "supplier": "Gelato",
+    "provider": "gelato",
+    "printifyProductId": "",
+    "printifyVariantId": "",
+    "name": "Puppy Love Market Tote",
+    "category": "Pet Merch",
+    "supplierPriceUsd": 7.1,
+    "suggestedRetailUsd": 22.5,
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a67478e?auto=format&fit=crop&w=800&q=80",
+    "matchType": "tote",
+    "sector": "pet supplies"
   }
 ];
-
 const SECTOR_ALIASES: Record<string, string> = {
   "beauty": "beauty",
   "perfume": "beauty",
@@ -255,12 +404,10 @@ const SECTOR_ALIASES: Record<string, string> = {
   "auto": "car accessories",
   "automotive": "car accessories"
 };
-
 function money(value: unknown) {
   const amount = Number(value);
   return Number.isFinite(amount) && amount > 0 ? Math.round(amount * 100) / 100 : 0;
 }
-
 function resolveSector(raw: string) {
   const key = String(raw || "").toLowerCase().trim();
   if (!key) return SELECTED[0]?.sector || "beauty";
@@ -270,7 +417,6 @@ function resolveSector(raw: string) {
   }
   return key;
 }
-
 function curated(sector: string) {
   return SELECTED
     .filter((p) => !p.sector || String(p.sector).toLowerCase() === sector)
@@ -288,7 +434,6 @@ function curated(sector: string) {
     }))
     .filter((p) => p.suggestedRetailUsd > 0 && p.name);
 }
-
 export default async (req: Request, context: any) => {
   if (req.method !== "GET") return Response.json({ error: "Method not allowed" }, { status: 405 });
   const url = new URL(req.url);
@@ -298,16 +443,7 @@ export default async (req: Request, context: any) => {
   const headers = { "access-control-allow-origin": "*", "cache-control": "public, max-age=60" };
   const products = curated(sector).slice(0, 30);
   return Response.json(
-    {
-      ok: true,
-      supplier: "gelato",
-      sector,
-      query: sector,
-      products,
-      count: products.length,
-      source: "gelato-selected-primary",
-      markets: ["NO", "EU", "PE"],
-    },
+    { ok: true, supplier: "gelato", sector, query: sector, products, count: products.length, source: "gelato-selected-primary", markets: ["NO", "EU", "PE"] },
     { status: products.length ? 200 : 503, headers }
   );
 };
