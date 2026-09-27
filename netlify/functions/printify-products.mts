@@ -183,7 +183,7 @@ const SELECTED: any[] = [
     "provider": "printify",
     "printifyProductId": "",
     "printifyVariantId": "",
-    "name": "Nordic Pets Walk Club Tote",
+    "name": "Animedel Walk Club Tote",
     "category": "Pet Merch",
     "supplierPriceUsd": 7.1,
     "suggestedRetailUsd": 24.5,
