@@ -1,4 +1,6 @@
-# Nordic Pet Store
+# Animedel — Pet Store
+
+Storefront brand: **Animedel** · https://animedel.no/ · Animedel er et varemerke fra ML Internasjonal. (Repo / Pages project: `NORDIC-PET-STORE`, formerly "Nordic Pet Store".)
 
 International storefront for Norway, Europe and Peru. Responsive catalog, market localization, cart, delivery options, test checkout and supplier-ready API endpoints.
 ## Direct commerce activation
