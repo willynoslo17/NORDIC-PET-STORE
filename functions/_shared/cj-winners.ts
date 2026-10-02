@@ -6,14 +6,21 @@
  *             keyword returns is visible only in the review list (/api/cj-products?winners=review).
  *   minUsd / maxUsd  band for the highest variant cost; include / exclude  name regexes (niche fit).
  *   onlyWinners      the storefront CJ set is the winners only (no generic sector set), e.g. Ludispel.
- * Name, image and cost always come live from CJ, so the price (functions/_shared/pricing.ts) and the checkout
- * quote use the real cost. Keywords are refreshed in the background a few at a time and never delay the grid.
+ *   products         server-only snapshot of every vetted pid (2026-10-02): Norwegian name and category, CJ sku and
+ *                    photo, `nameEn` (CJ name) and `supplierPriceMaxUsd` = the price basis of the highest variant
+ *                    cost at selection time. The grid always lists every vetted pid from this snapshot, so it does not
+ *                    depend on a warm keyword cache in the visitor's Cloudflare data centre. When the keyword cache
+ *                    has the live CJ row, its live cost, sku and photo are used (the Norwegian name is kept).
+ * Price rule: functions/_shared/pricing.ts (same for display and the encrypted checkout quote).
+ * Keywords are refreshed in the background a few at a time and never delay the grid.
  */
 import CONFIG from "./catalog-data/cj-winners.json";
 
+type Snapshot = { id: string; sku?: string; name: string; nameEn?: string; category?: string; image: string; supplierPriceMaxUsd: number; keyword?: string };
 type WinnersConfig = {
   keywords?: string[];
   pids?: string[];
+  products?: Snapshot[];
   minUsd?: number;
   maxUsd?: number;
   include?: string;
@@ -38,6 +45,7 @@ export const WINNERS_ONLY = CFG.onlyWinners === true;
 const KEYWORDS = Array.from(new Set((CFG.keywords || []).map((k) => String(k).trim().toLowerCase()).filter(Boolean)));
 const PIDS = (CFG.pids || []).map(String);
 const PID_SET = new Set(PIDS);
+const SNAPSHOT = new Map<string, Snapshot>((CFG.products || []).filter((row) => row && row.id).map((row) => [String(row.id), row]));
 const MIN_USD = Number(CFG.minUsd) > 0 ? Number(CFG.minUsd) : 0;
 const MAX_USD = Number(CFG.maxUsd) > 0 ? Number(CFG.maxUsd) : 1000;
 const INCLUDE = CFG.include ? new RegExp(CFG.include, "i") : null;
@@ -145,7 +153,7 @@ function eligible(product: any): boolean {
  * Starts a background refresh of stale keywords; returns whatever is cached now (never waits for CJ).
  */
 export async function winnerRows(deps: WinnerDeps, mode: "grid" | "review", skip: Set<string> = new Set()): Promise<any[]> {
-  if (!KEYWORDS.length || (mode === "grid" && !PID_SET.size)) return [];
+  if (mode === "grid" ? !PID_SET.size : !KEYWORDS.length) return [];
   const byId = new Map<string, any>();
   const stale: string[] = [];
   const store = await readStore(storeUrl(deps.origin, deps.sector));
@@ -167,13 +175,41 @@ export async function winnerRows(deps: WinnerDeps, mode: "grid" | "review", skip
   if (mode === "review") return Array.from(byId.values()).filter(eligible).map((row) => ({ ...row, vetted: PID_SET.has(String(row.id)) }));
   const out: any[] = [];
   for (const pid of PIDS) {
-    const row = byId.get(pid);
-    if (row && !skip.has(pid) && eligible(row)) out.push(row);
+    if (skip.has(pid)) continue;
+    const row = gridRow(pid, byId.get(pid), deps.sector);
+    if (row) out.push(row);
   }
   return out;
 }
 
+/** Vetted pid -> storefront row: live CJ row when cached (live cost), else the server-only snapshot. */
+function gridRow(pid: string, live: any, sector: string): any | null {
+  const snap = SNAPSHOT.get(pid);
+  const liveCost = Math.max(Number(live?.supplierPriceMaxUsd) || 0, Number(live?.supplierPriceUsd) || 0);
+  if (live && live.image && liveCost > 0 && (snap || eligible(live))) {
+    return snap ? { ...live, name: snap.name, category: snap.category || live.category, cat: snap.category || live.cat } : live;
+  }
+  if (!snap || !snap.image || !(Number(snap.supplierPriceMaxUsd) > 0)) return null;
+  const cost = Number(snap.supplierPriceMaxUsd);
+  return {
+    id: pid,
+    name: String(snap.name).slice(0, 160),
+    category: snap.category || sector,
+    cat: snap.category || sector,
+    sku: String(snap.sku || ""),
+    image: String(snap.image),
+    supplierPriceUsd: cost,
+    supplierPriceMaxUsd: cost,
+    brand: "CJ Dropshipping",
+    supplier: "CJ Dropshipping",
+    provider: "cj",
+    hasCECertification: false,
+    compliance: "EU/Nordic curated — no fake medical/drug/CE-toy claims",
+    keyword: snap.keyword || "",
+  };
+}
+
 /** Keyword refresh status for the review list. */
 export function winnersStatus() {
-  return { keywords: KEYWORDS.length, vetted: PID_SET.size, refreshing: Boolean(refreshing), lastError };
+  return { keywords: KEYWORDS.length, vetted: PID_SET.size, snapshot: SNAPSHOT.size, refreshing: Boolean(refreshing), lastError };
 }
