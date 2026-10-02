@@ -5,6 +5,7 @@
  *   pids      vetted CJ product ids. Only these are shown on the storefront, in this order; everything else a
  *             keyword returns is visible only in the review list (/api/cj-products?winners=review).
  *   minUsd / maxUsd  band for the highest variant cost; include / exclude  name regexes (niche fit).
+ *   requireCe        name regex (e.g. electrical items): such candidates need CJ's CE certification flag.
  *   onlyWinners      the storefront CJ set is the winners only (no generic sector set), e.g. Ludispel.
  *   products         server-only snapshot of every vetted pid (2026-10-02): Norwegian name and category, CJ sku and
  *                    photo, `nameEn` (CJ name) and `supplierPriceMaxUsd` = the price basis of the highest variant
@@ -25,6 +26,7 @@ type WinnersConfig = {
   maxUsd?: number;
   include?: string;
   exclude?: string;
+  requireCe?: string;
   onlyWinners?: boolean;
 };
 
@@ -50,6 +52,8 @@ const MIN_USD = Number(CFG.minUsd) > 0 ? Number(CFG.minUsd) : 0;
 const MAX_USD = Number(CFG.maxUsd) > 0 ? Number(CFG.maxUsd) : 1000;
 const INCLUDE = CFG.include ? new RegExp(CFG.include, "i") : null;
 const EXCLUDE = CFG.exclude ? new RegExp(CFG.exclude, "i") : null;
+/** Names matching requireCe (e.g. electrical items) are only eligible with CJ's CE certification flag. */
+const REQUIRE_CE = CFG.requireCe ? new RegExp(CFG.requireCe, "i") : null;
 const FRESH_MS = 6 * 3600 * 1000;
 const KEEP_SECONDS = 48 * 3600;
 const KEYWORDS_PER_REFRESH = 3; // keeps one request well under the 50-subrequest limit (CJ retries included)
@@ -145,6 +149,7 @@ function eligible(product: any): boolean {
   if (!product?.image || !(cost > 0) || cost < MIN_USD || cost > MAX_USD) return false;
   if (INCLUDE && !INCLUDE.test(name)) return false;
   if (EXCLUDE && EXCLUDE.test(name)) return false;
+  if (REQUIRE_CE && REQUIRE_CE.test(name) && !(product?.hasCECertification === true || product?.hasCECertification === "true")) return false;
   return true;
 }
 
