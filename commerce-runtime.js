@@ -7,6 +7,8 @@
   const STORE = (document.title || BRAND).replace(/[^a-z0-9]+/gi, "-").toLowerCase();
   const CART_KEY = "nordic-cart:" + STORE;
   const ORDER_KEY = "nordic-orders:" + STORE;
+  /** Keep in sync with STORE.checkoutEnabled in functions/_shared/store.ts — off until each pet SKU is verified. */
+  const CHECKOUT_ENABLED = false;
   const CONTACT_EMAILS = {
     info: "kontakt@animedel.no",
     support: "support@animedel.no",
@@ -140,7 +142,9 @@
       const notice = document.createElement("p");
       notice.id = "nordicPriceNotice";
       notice.style.cssText = "font-size:12px;line-height:1.5;opacity:.72;margin:0 0 14px";
-      notice.innerHTML = 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre (Norge) · €7,90 (EU) · S/ 14 (Peru). Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
+      notice.innerHTML = CHECKOUT_ENABLED
+        ? 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre (Norge) · €7,90 (EU) · S/ 14 (Peru). Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.'
+        : 'Alle priser i NOK er inkl. 25 % MVA. <strong>Betaling er ikke aktiv ennå</strong> — vi belaster ikke før lager, levering og produktsikkerhet er verifisert for hver kjæledyr-SKU. <span lang="es">El cobro está apagado hasta verificar stock, entrega y cumplimiento de cada SKU de mascotas.</span> <a href="/frakt-og-levering">Leveringstid</a> · <a href="/kontakt">Kontakt</a>.';
       grid.parentNode.insertBefore(notice, grid);
     }
     const schema = document.createElement("script");
@@ -174,17 +178,36 @@
       document.getElementById("checkoutClose").onclick = () => document.getElementById("checkoutModal").classList.remove("open");
     }
     const trigger = document.querySelector(".drawer .checkout");
-    if (trigger) trigger.onclick = () => {
-      if (!Object.keys(cartObject()).length) return;
-      const modal = document.getElementById("checkoutModal") || document.getElementById("modal");
-      if (!modal) return;
-      document.getElementById("drawer")?.classList.remove("open");
-      modal.classList.add("open", "show");
-      document.getElementById("overlay")?.classList.add("show");
-    };
+    if (trigger) {
+      if (!CHECKOUT_ENABLED) {
+        trigger.textContent = "BETALING KOMMER SNART · PAGO PRÓXIMAMENTE";
+        trigger.setAttribute("aria-disabled", "true");
+      }
+      trigger.onclick = () => {
+        if (!Object.keys(cartObject()).length) return;
+        if (!CHECKOUT_ENABLED) {
+          alert("Betaling er ikke aktiv ennå. Vi belaster ikke før lager, levering og produktsikkerhet er verifisert for hver kjæledyr-SKU.\n\nEl cobro está desactivado hasta verificar stock, entrega y cumplimiento de cada SKU de mascotas.\n\nKontakt " + CONTACT_EMAILS.orders + ".");
+          return;
+        }
+        const modal = document.getElementById("checkoutModal") || document.getElementById("modal");
+        if (!modal) return;
+        document.getElementById("drawer")?.classList.remove("open");
+        modal.classList.add("open", "show");
+        document.getElementById("overlay")?.classList.add("show");
+      };
+    }
     if (form.dataset.enhanced) return;
     form.dataset.enhanced = "true";
     const button = form.querySelector('[type="submit"]');
+    if (!CHECKOUT_ENABLED) {
+      button.textContent = "BETALING IKKE AKTIV ENNÅ";
+      button.disabled = true;
+      const offNotice = '<div class="full notice nordic-precontract">Betaling er av. Animedel belaster ikke før lagerbeholdning, levering og produktsikkerhet (cumplimiento) er verifisert for hver kjæledyr-SKU. Spørsmål: '+esc(CONTACT_EMAILS.orders)+'.<br><span lang="es">El cobro está apagado. No se cobra hasta verificar stock, entrega y cumplimiento de cada SKU de mascotas. Contacto: '+esc(CONTACT_EMAILS.orders)+'.</span></div>';
+      const oldOff = form.querySelector(".notice");
+      if (oldOff) oldOff.outerHTML = offNotice; else button.insertAdjacentHTML("beforebegin", offNotice);
+      form.onsubmit = event => { event.preventDefault(); };
+      return;
+    }
     button.textContent = "BETAL SIKKERT MED STRIPE";
     const summary = '<div class="full notice nordic-precontract">Du sendes til Stripe Checkout for sikker betaling. Selger: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). Totalpris inkl. 25 % MVA og frakt (79 kr i Norge) vises før du betaler. Estimert levering 5–20 virkedager. 14 dagers angrerett – du betaler selv returfrakten.<br><span lang="es">Serás redirigido a Stripe Checkout para pagar de forma segura. Vendedor: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). El precio total con 25 % de IVA y envío (79 kr en Noruega) se muestra antes de pagar. Entrega estimada: 5–20 días hábiles. Derecho de desistimiento de 14 días; los gastos de devolución corren por tu cuenta.</span></div>';
     const oldNotice = form.querySelector(".notice");
@@ -193,6 +216,7 @@
     button.insertAdjacentHTML("beforebegin", '<label class="full nordic-consent"><input required type="checkbox" name="terms"> <span>Jeg godtar '+L("/kjopsvilkar","kjøpsvilkårene")+' og har lest informasjonen om '+L("/angrerett","angrerett")+' (med '+L("/angreskjema","angreskjema")+') og '+L("/personvern","personvern")+'. <span lang="es">Acepto las '+L("/kjopsvilkar","condiciones de compra")+' y he leído la información sobre el '+L("/angrerett","derecho de desistimiento")+' (con el '+L("/angreskjema","formulario de desistimiento")+') y la '+L("/personvern","política de privacidad")+'.</span></span></label>');
     form.onsubmit = async event => {
       event.preventDefault();
+      if (!CHECKOUT_ENABLED) return;
       if (!form.reportValidity()) return;
       const items = Object.entries(cartObject()).map(([id, quantity]) => {
         const item = catalogProductById(id) || {};

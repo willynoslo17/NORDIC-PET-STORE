@@ -144,6 +144,14 @@ function json(error: string, status: number, extra: Record<string, unknown> = {}
 }
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
+  // Animedel: keep charging off until every pet SKU has verified stock, delivery and compliance.
+  if (!STORE.checkoutEnabled) {
+    return json(
+      "Checkout is off for Animedel until each pet SKU has verified stock, delivery and product compliance",
+      503,
+      { checkoutEnabled: false, store: STORE.slug },
+    );
+  }
   if (!context.env.STRIPE_SECRET_KEY?.startsWith("sk_live_")) {
     return json("Live payments are not configured", 503);
   }

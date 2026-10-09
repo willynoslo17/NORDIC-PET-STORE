@@ -6,4 +6,9 @@ export const STORE = {
   siteUrl: "https://animedel.no/",
   /** Catalog sector used by the Gelato/Printful endpoints (never taken from the query string). */
   sector: "pet supplies",
+  /**
+   * Checkout stays off until each pet SKU has verified supplier stock, delivery and product compliance.
+   * Do not flip this on just because STRIPE_SECRET_KEY / supplier env keys are present.
+   */
+  checkoutEnabled: false,
 } as const;

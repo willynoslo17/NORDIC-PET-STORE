@@ -1,6 +1,8 @@
-# Stripe setup for nordic-pet-store
+# Stripe setup for nordic-pet-store (Animedel only)
 
-Required Cloudflare Pages production environment variables (do not commit secrets):
+**Checkout is currently off.** `STORE.checkoutEnabled` in `functions/_shared/store.ts` is `false`. Do not enable charging until each pet SKU has verified supplier stock, delivery and product compliance. Setting Stripe env vars alone does not turn checkout on.
+
+Required Cloudflare Pages production environment variables (do not commit secrets; never invent placeholder keys):
 
 - `STRIPE_SECRET_KEY` — live secret key starting with `sk_live_`
 - `STRIPE_WEBHOOK_SECRET` — webhook signing secret from Stripe
@@ -16,10 +18,11 @@ Checkout session API:
 
 `POST /api/create-checkout-session`
 
-## POD supplier APIs (Cloudflare Pages / Netlify env)
+## POD / CJ supplier APIs (Cloudflare Pages / Netlify env)
 
-Free dashboard keys — no test/placeholder mode. Leave unset for empty POD catalogs; set for live API with local `[]` fallback:
+Use **real** dashboard keys only — no invented, test or placeholder tokens in the repo. Leave unset for empty POD catalogs; set for live API with local `[]` fallback:
 
+- `CJ_API_KEY` — CJ Dropshipping API key (optional until live sourcing).
 - `PRINTIFY_API_TOKEN` — Printify personal access token (shop products). Optional `PRINTIFY_SHOP_ID` (default `28847802`).
 - `GELATO_API_KEY` — Gelato API key (`X-API-KEY`). Optional `GELATO_STORE_ID` for priced ecommerce store products.
 - `PRINTFUL_API_TOKEN` — Printful private/OAuth token. Optional `PRINTFUL_STORE_ID` (`X-PF-Store-Id`) for account-level tokens.
