@@ -102,7 +102,7 @@
     tools.id = "nordicCatalogTools";
     tools.setAttribute("role", "search");
     tools.style.cssText = "display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px";
-    tools.innerHTML = '<input id="nordicProductSearch" type="search" autocomplete="off" aria-label="Søk i produktene" placeholder="Søk i produktene" style="flex:1;min-width:210px;padding:12px;border:1px solid #94a3b8;border-radius:8px"><select id="nordicProductSort" aria-label="Sorter produktene" style="padding:12px;border:1px solid #94a3b8;border-radius:8px"><option value="featured">Anbefalt</option><option value="price-asc">Pris: lav til høy</option><option value="price-desc">Pris: høy til lav</option><option value="name">Navn</option></select><span id="nordicResultCount" aria-live="polite" style="align-self:center;font-size:13px;opacity:.75"></span>';
+    tools.innerHTML = '<input id="nordicProductSearch" type="search" autocomplete="off" aria-label="Søk i produktene" placeholder="Søk i produktene" style="flex:1;min-width:210px;padding:12px;border:1px solid rgba(61,44,46,.15);border-radius:12px;background:#fff;color:#3D2C2E"><select id="nordicProductSort" aria-label="Sorter produktene" style="padding:12px;border:1px solid rgba(61,44,46,.15);border-radius:12px;background:#fff;color:#3D2C2E"><option value="featured">Anbefalt</option><option value="price-asc">Pris: lav til høy</option><option value="price-desc">Pris: høy til lav</option><option value="name">Navn</option></select><span id="nordicResultCount" aria-live="polite" style="align-self:center;font-size:13px;opacity:.75"></span>';
     grid.parentNode.insertBefore(tools, grid);
     const search = document.getElementById("nordicProductSearch");
     const count = document.getElementById("nordicResultCount");
@@ -135,7 +135,7 @@
     if (!document.querySelector('meta[name="theme-color"]')) {
       const theme = document.createElement("meta");
       theme.name = "theme-color";
-      theme.content = "#111827";
+      theme.content = "#FFF6EC";
       document.head.appendChild(theme);
     }
     const grid = document.getElementById("products");
@@ -143,12 +143,12 @@
       const notice = document.createElement("p");
       notice.id = "nordicPriceNotice";
       notice.style.cssText = "font-size:12px;line-height:1.5;opacity:.72;margin:0 0 14px";
-      notice.innerHTML = 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre (Norge) · €7,90 (EU) · S/ 14 (Peru). Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
+      notice.innerHTML = 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre i Norge. Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
       grid.parentNode.insertBefore(notice, grid);
     }
     const schema = document.createElement("script");
     schema.type = "application/ld+json";
-    schema.textContent = JSON.stringify({"@context":"https://schema.org","@type":"OnlineStore","name":BRAND,"url":SITE_URL,"areaServed":["NO","EU","PE"],"currenciesAccepted":["NOK","EUR","PEN"]});
+    schema.textContent = JSON.stringify({"@context":"https://schema.org","@type":"OnlineStore","name":BRAND,"url":SITE_URL,"description":"For de firbeinte i familien — norsk nettbutikk for hund, katt og smådyr.","areaServed":"NO","currenciesAccepted":"NOK","inLanguage":"nb"});
     document.head.appendChild(schema);
     const count = document.getElementById("count");
     if (count) count.setAttribute("aria-live", "polite");
@@ -179,7 +179,7 @@
     }
     let form = document.getElementById("checkoutForm");
     if (!form) {
-      document.body.insertAdjacentHTML("beforeend", '<div class="nordic-info" id="checkoutModal"><section class="nordic-info-card"><button type="button" id="checkoutClose">Lukk</button><h2>Leveringsopplysninger</h2><form id="checkoutForm" class="formgrid"><input required name="name" placeholder="Fullt navn"><input required type="email" name="email" placeholder="E-post"><input required name="phone" placeholder="Telefon"><input required name="city" placeholder="Sted"><input required class="full" name="address" placeholder="Adresse"><select required name="country" class="full"><option value="Norway">Norge</option><option value="Europe">Europa</option><option value="Peru">Peru</option></select><button class="checkout full" type="submit">GÅ TIL BETALING <span lang="es">/ IR AL PAGO</span></button></form><div id="success" style="display:none"></div></section></div>');
+      document.body.insertAdjacentHTML("beforeend", '<div class="nordic-info" id="checkoutModal"><section class="nordic-info-card"><button type="button" id="checkoutClose">Lukk</button><h2>Leveringsopplysninger</h2><form id="checkoutForm" class="formgrid"><input required name="name" placeholder="Fullt navn"><input required type="email" name="email" placeholder="E-post"><input required name="phone" placeholder="Telefon"><input required name="city" placeholder="Sted"><input required class="full" name="address" placeholder="Adresse"><select required name="country" class="full"><option value="Norway">Norge</option></select><button class="checkout full" type="submit">GÅ TIL BETALING</button></form><div id="success" style="display:none"></div></section></div>');
       form = document.getElementById("checkoutForm");
       document.getElementById("checkoutClose").onclick = () => document.getElementById("checkoutModal").classList.remove("open");
     }
@@ -196,11 +196,11 @@
     form.dataset.enhanced = "true";
     const button = form.querySelector('[type="submit"]');
     button.textContent = "BETAL SIKKERT MED STRIPE";
-    const summary = '<div class="full notice nordic-precontract">Du sendes til Stripe Checkout for sikker betaling. Selger: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). Totalpris inkl. 25 % MVA og frakt (79 kr i Norge) vises før du betaler. Estimert levering 5–20 virkedager. 14 dagers angrerett – du betaler selv returfrakten.<br><span lang="es">Serás redirigido a Stripe Checkout para pagar de forma segura. Vendedor: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). El precio total con 25 % de IVA y envío (79 kr en Noruega) se muestra antes de pagar. Entrega estimada: 5–20 días hábiles. Derecho de desistimiento de 14 días; los gastos de devolución corren por tu cuenta.</span></div>';
+    const summary = '<div class="full notice nordic-precontract">Du sendes til Stripe Checkout for sikker betaling. Selger: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). Totalpris inkl. 25 % MVA og frakt (79 kr i Norge) vises før du betaler. Estimert levering 5–20 virkedager. 14 dagers angrerett – du betaler selv returfrakten.</div>';
     const oldNotice = form.querySelector(".notice");
     if (oldNotice) oldNotice.outerHTML = summary; else button.insertAdjacentHTML("beforebegin", summary);
     const L = (href, text) => '<a href="'+href+'" target="_blank" rel="noopener">'+text+'</a>';
-    button.insertAdjacentHTML("beforebegin", '<label class="full nordic-consent"><input required type="checkbox" name="terms"> <span>Jeg godtar '+L("/kjopsvilkar","kjøpsvilkårene")+' og har lest informasjonen om '+L("/angrerett","angrerett")+' (med '+L("/angreskjema","angreskjema")+') og '+L("/personvern","personvern")+'. <span lang="es">Acepto las '+L("/kjopsvilkar","condiciones de compra")+' y he leído la información sobre el '+L("/angrerett","derecho de desistimiento")+' (con el '+L("/angreskjema","formulario de desistimiento")+') y la '+L("/personvern","política de privacidad")+'.</span></span></label>');
+    button.insertAdjacentHTML("beforebegin", '<label class="full nordic-consent"><input required type="checkbox" name="terms"> <span>Jeg godtar '+L("/kjopsvilkar","kjøpsvilkårene")+' og har lest informasjonen om '+L("/angrerett","angrerett")+' (med '+L("/angreskjema","angreskjema")+') og '+L("/personvern","personvern")+'.</span></label>');
     form.onsubmit = async event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
