@@ -31,12 +31,13 @@
     const key = String(q || "").toLowerCase();
     return POD_QUERY_ALIAS[key] || key;
   }
+  /* Absolute paths so /pe/ (and other subfolders) resolve the same public catalog files. */
   const LOCAL_FILES = {
-    cj: "catalog/selected-products.json",
-    printify: "catalog/printify-selected.json",
-    printifyFallback: "catalog/printify-products.json",
-    gelato: "catalog/gelato-products.json",
-    printful: "catalog/printful-products.json"
+    cj: "/catalog/selected-products.json",
+    printify: "/catalog/printify-selected.json",
+    printifyFallback: "/catalog/printify-products.json",
+    gelato: "/catalog/gelato-products.json",
+    printful: "/catalog/printful-products.json"
   };
   const ID_BASE = { cj: 10001, printify: 20001, gelato: 30001, printful: 40001 };
   const LABELS = { cj: "CJ", printify: "Printify", gelato: "Gelato", printful: "Printful" };
@@ -161,6 +162,12 @@
 
   async function loadCjSelected(config) {
     const allowed = cjAllowed(config);
+    const localUrl = config.cjFile || LOCAL_FILES.cj;
+    /* Peru and other snapshot-only surfaces: never call the live CJ API. */
+    if (config.localOnly) {
+      const localItems = await loadJson(localUrl);
+      return localItems.filter(allowed).map((item, index) => curated(item, index, config.category, "cj")).filter(item => item.base > 0).slice(0, 600);
+    }
     const timeout = new AbortController();
     const timer = setTimeout(() => timeout.abort(), SOURCE_TIMEOUT_MS);
     try {
@@ -182,7 +189,7 @@
       clearTimeout(timer);
     }
     if (config.cjLocalFallback === false) return []; // store sells CJ winners only (no generic local fallback)
-    const localItems = await loadJson(LOCAL_FILES.cj);
+    const localItems = await loadJson(localUrl);
     return localItems.filter(allowed).map((item, index) => curated(item, index, config.category, "cj")).filter(item => item.base > 0).slice(0, 150);
   }
 
@@ -245,6 +252,8 @@
     const raw = String(item.cat || "").trim();
     const key = raw.toLowerCase();
     if (cfg.catMap && cfg.catMap[key]) return cfg.catMap[key];
+    /* Peru snapshot rows already carry Spanish boutique categories (Alimento, Arena, …). */
+    if (cfg.preserveCategories && raw) return raw;
     /* CJ "category" is only the store sector / search word (e.g. "beauty"): use the store's own category name. */
     if (provider === "cj" || !key || key === String(cfg.query || "").toLowerCase() || key === podQuery(cfg.query)) return cfg.category || raw;
     if (CAT_NB[key]) return CAT_NB[key];
@@ -311,12 +320,20 @@
     const category = cfg.category || "General";
     const query = cfg.query || "";
     const keep = storefrontItem();
-    const loaders = {
-      cj: cfg.cj === false ? Promise.resolve([]) : loadCjSelected(cfg), // store opted out of CJ: no request
-      printify: loadPodCatalog("printify", category, query),
-      gelato: loadPodCatalog("gelato", category, query),
-      printful: loadPodCatalog("printful", category, query)
-    };
+    const loaders = cfg.localOnly
+      ? {
+          /* Snapshot-only mode (e.g. /pe/): CJ from local JSON, no live supplier APIs. */
+          cj: cfg.cj === false ? Promise.resolve([]) : loadCjSelected(cfg),
+          printify: Promise.resolve([]),
+          gelato: Promise.resolve([]),
+          printful: Promise.resolve([])
+        }
+      : {
+          cj: cfg.cj === false ? Promise.resolve([]) : loadCjSelected(cfg), // store opted out of CJ: no request
+          printify: loadPodCatalog("printify", category, query),
+          gelato: loadPodCatalog("gelato", category, query),
+          printful: loadPodCatalog("printful", category, query)
+        };
     window.nordicCatalogs = { cj: [], printify: [], gelato: [], printful: [] };
     /* Render each supplier as soon as it answers (or falls back after its timeout). */
     const settle = key => loaders[key]

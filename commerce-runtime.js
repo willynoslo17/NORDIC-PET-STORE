@@ -131,6 +131,11 @@
     applySearch();
   }
 
+  function isPeruStore() {
+    const p = (location.pathname || "").replace(/\/+$/, "") || "/";
+    return p === "/pe" || p.indexOf("/pe/") === 0;
+  }
+
   function addTrustAndSeo() {
     if (!document.querySelector('meta[name="theme-color"]')) {
       const theme = document.createElement("meta");
@@ -143,12 +148,14 @@
       const notice = document.createElement("p");
       notice.id = "nordicPriceNotice";
       notice.style.cssText = "font-size:12px;line-height:1.5;opacity:.72;margin:0 0 14px";
-      notice.innerHTML = 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre (Norge) · €7,90 (EU) · S/ 14 (Peru). Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
+      notice.innerHTML = isPeruStore()
+        ? 'Todos los precios en PEN incluyen IGV (18 %). Envío S/ 14 por pedido a todo el Perú. El total se muestra antes del pago. <a href="/pe/envios">Envíos</a> · <a href="/pe/cambios">Cambios y devoluciones</a>.'
+        : 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre (Norge) · €7,90 (EU) · S/ 14 (Peru). Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
       grid.parentNode.insertBefore(notice, grid);
     }
     const schema = document.createElement("script");
     schema.type = "application/ld+json";
-    schema.textContent = JSON.stringify({"@context":"https://schema.org","@type":"OnlineStore","name":BRAND,"url":SITE_URL,"areaServed":["NO","EU","PE"],"currenciesAccepted":["NOK","EUR","PEN"]});
+    schema.textContent = JSON.stringify({"@context":"https://schema.org","@type":"OnlineStore","name":BRAND,"url":isPeruStore() ? SITE_URL + "pe/" : SITE_URL,"areaServed":["NO","EU","PE"],"currenciesAccepted":["NOK","EUR","PEN"]});
     document.head.appendChild(schema);
     const count = document.getElementById("count");
     if (count) count.setAttribute("aria-live", "polite");

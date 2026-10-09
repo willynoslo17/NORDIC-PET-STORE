@@ -3,6 +3,15 @@
 Storefront brand: **Animedel** · https://animedel.no/ · Animedel er et varemerke fra ML Internasjonal. (Repo / Pages project: `NORDIC-PET-STORE`, formerly "Nordic Pet Store".)
 
 International storefront for Norway, Europe and Peru. Responsive catalog, market localization, cart, delivery options, test checkout and supplier-ready API endpoints.
+
+## Perú (`/pe/`)
+
+- Spanish storefront at https://animedel.no/pe/ (Lima look: large photos, stock, stars, envío a todo el Perú).
+- Five legal pages + Libro de Reclamaciones → `support@animedel.no`. Responsible: MARTINEZ LOZANO INTERNASJONAL HANDEL.
+- Catalog from reviewed snapshot only (`catalog/pe-selected.json`: alimento, arena, juguetes, accesorios). **No live CJ API** on `/pe/` (`localOnly`).
+- Checkout off; Yape / Plin shown as «próximamente». Norwegian storefront look and copy stay unchanged.
+- Smoke: `node tests/smoke-pe.mjs`
+
 ## Direct commerce activation
 
 The store has its own `/api/cj-products` catalog endpoint and a validated `/api/order` endpoint. Configure `CJ_API_KEY` and the shared `MAKE_ORDERS_WEBHOOK` in Netlify; credentials must never be committed.
