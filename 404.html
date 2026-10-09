@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFF6EC">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -11,29 +12,37 @@
 <meta name="twitter:image" content="https://animedel.no/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <title>Siden finnes ikke — Animedel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f4efe6;--ink:#1c1915;--muted:#5c564c;--line:#d9d1c3;--accent:#7d3b2c;--on-accent:#fff8f3}
+:root{--cream:#FFF6EC;--terracotta:#E07A5F;--sage:#81B29A;--brown:#3D2C2E}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--paper);color:var(--ink)}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1.25rem}
+html,body{margin:0;background:var(--cream);color:var(--brown)}
+body{
+  font-family:Nunito,system-ui,sans-serif;line-height:1.55;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;padding:2rem 1.25rem;
+  background:radial-gradient(ellipse at 20% 10%,rgba(224,122,95,.12),transparent 50%),
+             radial-gradient(ellipse at 90% 80%,rgba(129,178,154,.14),transparent 45%),
+             var(--cream);
+}
 main{width:100%;max-width:36rem}
-.brand{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;font-weight:700;margin:0;color:var(--ink);text-decoration:none}
-.rubro{margin:.15rem 0 0;color:var(--muted);font-size:.95rem}
-.code{font-family:Georgia,"Times New Roman",serif;font-size:clamp(4.5rem,18vw,7rem);line-height:1;font-weight:700;color:var(--accent);margin:2rem 0 .5rem}
-h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;margin:0 0 .5rem}
-h1{font-size:1.8rem}
-h2{font-size:1.3rem}
+.brand{font-family:Fredoka,Nunito,sans-serif;font-size:1.5rem;font-weight:700;margin:0;color:var(--terracotta);text-decoration:none}
+.rubro{margin:.2rem 0 0;color:var(--brown);opacity:.7;font-size:.95rem}
+.code{font-family:Fredoka,Nunito,sans-serif;font-size:clamp(4.5rem,18vw,7rem);line-height:1;font-weight:700;color:var(--terracotta);margin:2rem 0 .5rem}
+h1{font-family:Fredoka,Nunito,sans-serif;font-weight:700;margin:0 0 .5rem;font-size:1.8rem;color:var(--brown)}
 p{margin:0 0 1rem}
-.es{border-top:1px solid var(--line);margin-top:1.5rem;padding-top:1.25rem}
-.es .rubro{margin:0 0 .75rem}
 .actions{margin-top:1.75rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem}
-.btn{display:inline-block;background:var(--accent);color:var(--on-accent);text-decoration:none;padding:.8rem 1.4rem;border-radius:6px;font-weight:600;text-align:center}
-.btn small{display:block;font-weight:400;font-size:.8rem;opacity:.9}
-.btn:hover,.btn:focus-visible{filter:brightness(1.1)}
-.actions a:not(.btn){color:var(--ink);text-decoration-color:var(--line);text-underline-offset:3px}
-.actions a:not(.btn):hover{text-decoration-color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.contact{color:var(--muted);font-size:.95rem}
+.btn{
+  display:inline-block;background:var(--terracotta);color:#fff;text-decoration:none;
+  padding:.85rem 1.5rem;border-radius:14px;font-weight:700;text-align:center;
+}
+.btn:hover,.btn:focus-visible{background:#c9684f}
+.actions a:not(.btn){color:var(--brown);text-decoration-color:var(--sage);text-underline-offset:3px}
+.actions a:not(.btn):hover{color:var(--terracotta)}
+a:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+.contact{color:var(--brown);opacity:.75;font-size:.95rem}
+.contact a{color:var(--terracotta)}
 @media (max-width:480px){.actions{flex-direction:column;align-items:stretch}.btn{width:100%}}
 </style>
 <meta name="twitter:title" content="Siden finnes ikke — Animedel">
@@ -41,19 +50,14 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 <body>
 <main>
 <a class="brand" href="/">Animedel</a>
-<p class="rubro">Produkter til kjæledyr</p>
+<p class="rubro">For de firbeinte i familien</p>
 <div class="code" aria-hidden="true">404</div>
 <h1>Siden finnes ikke</h1>
 <p>Vi finner ikke denne siden hos Animedel. Den kan være flyttet, eller adressen kan være skrevet feil.</p>
-<section class="es" lang="es">
-<p class="rubro">Productos para mascotas</p>
-<h2>Página no encontrada</h2>
-<p>No encontramos esta página en Animedel. Puede que se haya movido o que la dirección esté mal escrita.</p>
-</section>
 <div class="actions">
-<a class="btn" href="/">Til forsiden <small lang="es">Volver al inicio</small></a>
-<a href="/#shop">Katalogen / <span lang="es">Catálogo</span></a>
-<span class="contact">Kontakt · <span lang="es">Contacto</span>: <a href="mailto:kontakt@animedel.no">kontakt@animedel.no</a></span>
+<a class="btn" href="/">Til forsiden</a>
+<a href="/#shop">Se butikken</a>
+<span class="contact">Kontakt: <a href="mailto:kontakt@animedel.no">kontakt@animedel.no</a></span>
 </div>
 </main>
 </body>
