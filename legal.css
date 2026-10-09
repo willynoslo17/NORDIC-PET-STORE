@@ -12,7 +12,7 @@ a{color:var(--pine-soft)}
 .lg-back{color:var(--muted);text-decoration:none;font-size:14px}
 .lg-main{max-width:860px;margin:0 auto;padding:36px 5% 60px}
 .lg-lang{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
-.lg-lang a{border:1px solid var(--line);padding:6px 12px;text-decoration:none;color:var(--ink);border-radius:999px;background:var(--panel)}
+.lg-lang a{border:1px solid var(--line);padding:6px 12px;text-decoration:none;color:var(--ink);border-radius:12px;background:var(--panel)}
 .lg-toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin:0 0 26px;padding:14px 0;border-bottom:1px solid var(--line)}
 .lg-toc a{color:var(--muted)}.lg-toc a[aria-current]{color:var(--pine);font-weight:700}
 article{background:var(--panel);border:1px solid var(--line);padding:28px 30px;margin:0 0 26px;border-radius:18px;box-shadow:0 12px 30px rgba(31,74,56,.06)}
@@ -21,7 +21,7 @@ h2{font-family:var(--display);font-size:19px;margin:28px 0 8px;color:var(--pine)
 .lg-meta{color:var(--muted);font-size:13px}
 .lg-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
 .lg-table th,.lg-table td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:9px 8px}
-.lg-btn{display:inline-block;background:var(--accent);color:#fffdf9;border:0;padding:12px 18px;font-weight:800;text-decoration:none;cursor:pointer;border-radius:999px;font:inherit}
+.lg-btn{display:inline-block;background:var(--accent);color:#fffdf9;border:0;padding:12px 18px;font-weight:800;text-decoration:none;cursor:pointer;border-radius:14px;font:inherit}
 .lg-form .lg-line{display:inline-block;min-width:260px;border-bottom:1px solid var(--muted);height:1.3em;margin:0 6px 4px 0}
 .lg-form p{margin:10px 0}
 .footer{padding:30px 5%;border-top:1px solid var(--line);color:var(--muted);font-size:13px;max-width:none;background:#dff0e6}
