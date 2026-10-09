@@ -29,7 +29,7 @@ export function linkedProducts(rows: unknown = LINKED) {
       printifyProductId: String(p.printifyProductId),
       printifyVariantId: String(p.printifyVariantId),
       printifyMatch: "id",
-      name: String(p.name || "Printify product"),
+      name: String(p.name || "Produkt"),
       size: String(p.size || ""),
       category: String(p.category || ""),
       description: String(p.description || ""),
