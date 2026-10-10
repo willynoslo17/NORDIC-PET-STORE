@@ -715,7 +715,16 @@ export async function onRequestGet(context: any) {
   const sector = STORE.sector;
   const headersOut = { "access-control-allow-origin": "*", "cache-control": "public, max-age=300" };
   if (!context.env.GELATO_API_KEY) {
-    return Response.json({ error: "Gelato is not configured", products: [], supplier: "Gelato", sector, source: "gelato-unconfigured" }, { status: 503, headers: headersOut });
+    // Graceful empty catalog (200): storefront hides Gelato when there are no sellable products.
+    return Response.json({
+      ok: true,
+      products: [],
+      count: 0,
+      supplier: "Gelato",
+      sector,
+      source: "gelato-unconfigured",
+      markets: ["NO"],
+    }, { status: 200, headers: headersOut });
   }
   const origin = new URL(context.request.url).origin;
   const key = `${origin}/__cache/gelato-products/v3?sector=${encodeURIComponent(sector)}`;
@@ -748,6 +757,7 @@ export async function onRequestGet(context: any) {
     }
     const { products, diag, source } = value!.payload;
     const priced = await withQuotes(context.env, "gelato", products, gelatoIds);
+    // Empty Gelato results used to return 503 and look like an outage; return 200 with [] so the UI skips Gelato quietly.
     return Response.json({
       ok: true,
       supplier: "Gelato",
@@ -755,18 +765,21 @@ export async function onRequestGet(context: any) {
       query: sector,
       products: priced,
       count: priced.length,
-      source,
+      source: priced.length ? source : (source || "gelato-empty"),
       diagnostics: diag,
-      markets: ["NO", "EU", "PE"],
+      markets: ["NO"],
       compliance: "EU/Nordic POD merch",
-    }, { status: priced.length ? 200 : 503, headers: { ...headersOut, "x-catalog-cache": state } });
+    }, { status: 200, headers: { ...headersOut, "x-catalog-cache": state } });
   } catch (error) {
     return Response.json({
+      ok: true,
       error: error instanceof Error ? error.message : "Gelato request failed",
       products: [],
+      count: 0,
       supplier: "Gelato",
       sector,
       source: "gelato-error",
-    }, { status: 502, headers: headersOut });
+      markets: ["NO"],
+    }, { status: 200, headers: headersOut });
   }
 }

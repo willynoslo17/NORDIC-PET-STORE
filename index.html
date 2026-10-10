@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Animedel | For de firbeinte i familien</title>
-<meta name="description" content="Animedel — norsk nettbutikk for hund, katt og smådyr. Frakt 79 kr, 14 dagers angrerett og sikker betaling med kort. For de firbeinte i familien.">
+<meta name="description" content="Animedel — norsk nettbutikk for hund, katt og smådyr. Gratis frakt fra 599 kr, 30 dagers retur og sikker betaling med kort. For de firbeinte i familien.">
 <link rel="canonical" href="https://animedel.no/">
 <meta name="application-name" content="Animedel">
 <meta name="theme-color" content="#FFF6EC">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Animedel">
 <meta property="og:title" content="Animedel | For de firbeinte i familien">
-<meta property="og:description" content="Norsk nettbutikk for hund, katt og smådyr. Frakt 79 kr, 14 dagers angrerett og sikker betaling med kort.">
+<meta property="og:description" content="Norsk nettbutikk for hund, katt og smådyr. Gratis frakt fra 599 kr, 30 dagers retur og sikker betaling med kort.">
 <meta property="og:url" content="https://animedel.no/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Animedel | For de firbeinte i familien">
-<meta name="twitter:description" content="Norsk nettbutikk for hund, katt og smådyr. Frakt 79 kr, 14 dagers angrerett og sikker betaling med kort.">
+<meta name="twitter:description" content="Norsk nettbutikk for hund, katt og smådyr. Gratis frakt fra 599 kr, 30 dagers retur og sikker betaling med kort.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -251,9 +251,10 @@ img{max-width:100%;display:block}
 </head>
 <body>
 <div class="benefits" role="region" aria-label="Fordeler">
-  <span><i aria-hidden="true"></i> Frakt 79 kr per ordre</span>
-  <span><i aria-hidden="true"></i> 14 dagers angrerett</span>
-  <span><i aria-hidden="true"></i> Sikker betaling med kort (Stripe)</span>
+  <span><i aria-hidden="true"></i> Gratis frakt fra 599 kr</span>
+  <span><i aria-hidden="true"></i> 30 dagers retur</span>
+  <span><i aria-hidden="true"></i> Klarna og Vipps kommer snart</span>
+  <span><i aria-hidden="true"></i> Kontakt: <a href="mailto:support@animedel.no" style="color:inherit;text-decoration:underline">support@animedel.no</a> · <a href="tel:+4791290416" style="color:inherit;text-decoration:underline">+47 912 90 416</a></span>
 </div>
 
 <nav class="nav" aria-label="Hovedmeny">
@@ -341,7 +342,7 @@ img{max-width:100%;display:block}
   <div class="sectionhead">
     <p class="eyebrow">Produkter</p>
     <h2>Utstyr til kjæledyret</h2>
-    <p class="muted">Alle priser i NOK inkl. 25 % MVA · Frakt 79 kr per ordre · 14 dagers angrerett.</p>
+    <p class="muted">Alle priser i NOK inkl. 25 % MVA · Gratis frakt fra 599 kr · 30 dagers retur · Klarna og Vipps kommer snart.</p>
   </div>
   <div class="filters" id="filters"></div>
   <div class="products" id="products"></div>
@@ -387,7 +388,7 @@ img{max-width:100%;display:block}
 </form>
 </section>
 <p><strong>Animedel</strong> — for de firbeinte i familien.</p>
-<p>Norbygata 19, 0187 Oslo, Norge · <a href="mailto:support@animedel.no">support@animedel.no</a></p>
+<p>Norbygata 19, 0187 Oslo, Norge · <a href="mailto:support@animedel.no">support@animedel.no</a> · <a href="tel:+4791290416">+47 912 90 416</a> · <a href="/kontakt">Kontakt</a></p>
 <nav class="ml-legal-links" aria-label="Kundeinformasjon">
 <a href="/kjopsvilkar">Kjøpsvilkår</a>
 <a href="/angrerett">Angrerett</a>
@@ -403,7 +404,7 @@ img{max-width:100%;display:block}
 <a href="/kontakt">Kontakt</a>
 <a href="/blog/">Blogg</a>
 </nav>
-<p>Priser i NOK inkl. 25 % MVA · Frakt 79 kr per ordre · 14 dagers angrerett</p>
+<p>Priser i NOK inkl. 25 % MVA · Gratis frakt fra 599 kr (ellers 79 kr) · 30 dagers retur · Klarna og Vipps kommer snart</p>
 <p>© 2026 Animedel</p>
 </footer>
 
@@ -445,7 +446,9 @@ img{max-width:100%;display:block}
 
 <script>
 let products=[];
-const markets={NO:{currency:'NOK',rate:11.7,locale:'nb-NO',country:'Norway',delivery:[['Standard','5–20 virkedager',79]]}};
+const FREE_SHIPPING_NOK=599;
+const SHIPPING_NOK=79;
+const markets={NO:{currency:'NOK',rate:11.7,locale:'nb-NO',country:'Norway',delivery:[['Standard','5–20 virkedager',SHIPPING_NOK]]}};
 let market='NO',filter='All',cart={},ship=0;
 const $=s=>document.querySelector(s);
 const money=n=>new Intl.NumberFormat(markets[market].locale,{style:'currency',currency:markets[market].currency,maximumFractionDigits:0}).format(n*markets[market].rate);
@@ -517,11 +520,11 @@ function renderCart(){
     return `<div class="cartitem"><div><strong>${escAttr(p.name)}</strong><div class="muted">${money(p.base)}</div></div><div class="qty"><button type="button" onclick="qty(${id},-1)">−</button><span>${q}</span><button type="button" onclick="qty(${id},1)">+</button></div></div>`;
   }).join('')||'<p class="muted">Handlekurven er tom.</p>';
   $('#count').textContent=count;
-  const opts=markets[market].delivery;
-  if(ship>=opts.length)ship=0;
-  $('#shipping').innerHTML=count?`<h4>Levering</h4>${opts.map((o,i)=>`<label class="shipopt"><input type="radio" name="ship" ${ship===i?'checked':''} onchange="ship=${i};renderCart()"> ${o[0]} · ${o[1]} · ${new Intl.NumberFormat(markets[market].locale,{style:'currency',currency:markets[market].currency,maximumFractionDigits:0}).format(o[2])}</label>`).join('')}`:'';
-  const shipCost=count?opts[ship][2]/markets[market].rate:0;
-  $('#total').textContent=money(sub+shipCost);
+  const subNok=sub*markets[market].rate;
+  const shipNok=count?(subNok>=FREE_SHIPPING_NOK?0:SHIPPING_NOK):0;
+  const shipLabel=shipNok===0?'Gratis frakt':'Standardfrakt 79 kr';
+  $('#shipping').innerHTML=count?`<h4>Levering</h4><label class="shipopt"><input type="radio" name="ship" checked> ${shipLabel} · 5–20 virkedager · ${new Intl.NumberFormat(markets[market].locale,{style:'currency',currency:markets[market].currency,maximumFractionDigits:0}).format(shipNok)}${shipNok===0?'':` <span class="muted">(gratis fra ${FREE_SHIPPING_NOK} kr)</span>`}</label>`:'';
+  $('#total').textContent=money(sub+shipNok/markets[market].rate);
 }
 function openCart(){$('#drawer').classList.add('open');$('#overlay').classList.add('show')}
 function closeAll(){$('#drawer').classList.remove('open');$('#modal').classList.remove('show');$('#overlay').classList.remove('show')}

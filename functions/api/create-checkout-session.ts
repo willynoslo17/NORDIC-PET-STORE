@@ -35,13 +35,10 @@ const markets = {
   PE: { currency: "pen", rate: 4.05, shipping: 14 },
 } as const;
 
-/** Countries Stripe Checkout accepts as shipping destinations: Norway/EEA, EU-27, UK, CH, US, CA and PE (Peru market). */
-const SHIPPING_COUNTRIES = [
-  "NO", "IS", "LI",
-  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV",
-  "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
-  "GB", "CH", "US", "CA", "PE",
-];
+/** Animedel Norway storefront: Stripe Checkout ships to Norway only (Peru lives on a separate channel). */
+const SHIPPING_COUNTRIES = ["NO"];
+/** Free standard shipping in Norway when the merchandise subtotal (NOK) reaches this amount. */
+const FREE_SHIPPING_NOK = 599;
 
 const PROVIDERS: Provider[] = ["cj", "printify", "gelato", "printful"];
 const MAX_CJ_LOOKUPS = 5;
@@ -143,12 +140,17 @@ function json(error: string, status: number, extra: Record<string, unknown> = {}
   return Response.json({ error, ...extra }, { status });
 }
 
-/** Betaling midlertidig stengt. Sett til true for å åpne Stripe Checkout igjen. */
+/** Betaling midlertidig stengt. Keep in sync with STORE.checkoutEnabled and commerce-runtime.js. */
 const CHECKOUT_ENABLED = false;
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
-  if (!CHECKOUT_ENABLED) {
-    return json("Nettbutikken åpner snart. Kontakt oss på kontakt@animedel.no.", 503);
+  // Dual gate: hard flag + per-store setting from STORE (folded from checkout-off PR).
+  if (!CHECKOUT_ENABLED || !STORE.checkoutEnabled) {
+    return json(
+      "Nettbutikken åpner snart. Kontakt oss på kontakt@animedel.no.",
+      503,
+      { checkoutEnabled: false, store: STORE.slug },
+    );
   }
   if (!context.env.STRIPE_SECRET_KEY?.startsWith("sk_live_")) {
     return json("Live payments are not configured", 503);
@@ -232,10 +234,18 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
     }
     params.set(`line_items[${index}][quantity]`, String(line.quantity));
   });
+  const subtotalNok = lines.reduce((sum, line) => sum + line.nok * line.quantity, 0);
+  const shippingAmount =
+    body.market === "NO" && subtotalNok >= FREE_SHIPPING_NOK
+      ? 0
+      : Math.round(market.shipping * 100);
   const shippingIndex = lines.length;
   params.set(`line_items[${shippingIndex}][price_data][currency]`, market.currency);
-  params.set(`line_items[${shippingIndex}][price_data][unit_amount]`, String(Math.round(market.shipping * 100)));
-  params.set(`line_items[${shippingIndex}][price_data][product_data][name]`, "Standard shipping");
+  params.set(`line_items[${shippingIndex}][price_data][unit_amount]`, String(shippingAmount));
+  params.set(
+    `line_items[${shippingIndex}][price_data][product_data][name]`,
+    shippingAmount === 0 ? "Gratis frakt" : "Standardfrakt",
+  );
   params.set(`line_items[${shippingIndex}][price_data][product_data][metadata][kind]`, "shipping");
   params.set(`line_items[${shippingIndex}][quantity]`, "1");
 

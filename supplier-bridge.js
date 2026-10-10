@@ -59,14 +59,91 @@
     "stationery": "Papirvarer",
     "accessories": "Tilbehør",
     "home": "Hjem",
-    "phone-cases": "Mobildeksler"
+    "phone-cases": "Mobildeksler",
+    "pet supplies": "Dyreutstyr",
+    "dog toys": "Hundeleker",
+    "cat toys": "Kattehjørnet",
+    "pet bed": "Senger og tepper",
+    "pet beds": "Senger og tepper",
+    "feeder": "Fôring",
+    "grooming": "Tur og pelsstell"
   };
+  /* Soft storefront accents — never supplier brand colours on product cards. */
   const BRAND_COLORS = {
-    cj: "#0f766e",
-    printify: "#7c3aed",
-    gelato: "#ea580c",
-    printful: "#2563eb"
+    cj: "#E07A5F",
+    printify: "#81B29A",
+    gelato: "#E07A5F",
+    printful: "#81B29A"
   };
+  /** Infer a Norwegian pet category from English/Norwegian product text (live CJ titles). */
+  const PET_CAT_RULES = [
+    [/\b(feeder|bowl|fontaine|fountain|dispenser|skål|fôr|matskål|rice pot)\b/i, "Fôring"],
+    [/\b(kennel|house|bed|blanket|mattress|jumper|seng|teppe|hundehus|katteseng)\b/i, "Senger og tepper"],
+    [/\b(tunnel|scratch|climbing|balcony|cat toy|katte)\b/i, "Kattehjørnet"],
+    [/\b(hamster|small animal|smådyr)\b/i, "Smådyr"],
+    [/\b(toy|molar|chew|leke|tygge)\b/i, "Hundeleker"],
+    [/\b(leash|collar|harness|poop|bag|groom|cleaner|bark|guardrail|clip|bånd|halsbånd|sele|bæsje)\b/i, "Tur og pelsstell"],
+    [/\b(mug|krus)\b/i, "Krus"],
+    [/\b(poster|plakat)\b/i, "Plakater"],
+    [/\b(tote|veske|handlenett)\b/i, "Vesker"],
+    [/\b(hoodie|tee|t-skjorte|crewneck|hettegenser|klær)\b/i, "Klær"],
+    [/\b(notebook|sticker|notatbok|klistremerke)\b/i, "Papirvarer"]
+  ];
+  function inferPetCategory(text, fallback) {
+    const hit = PET_CAT_RULES.find(rule => rule[0].test(String(text || "")));
+    if (hit) return hit[1];
+    return fallback !== undefined ? fallback : "Dyreutstyr";
+  }
+  /** Light Norwegian cleanup for English pet titles from live supplier APIs. */
+  function displayNameNb(name) {
+    let s = String(name || "").trim();
+    if (!s) return "Produkt";
+    if (/[æøåÆØÅ]/.test(s) || /\b(krus|plakat|hund|katt|skål|bånd|seng|leke|fôr|handlenett|hettegenser|notatbok|klistremerke)\b/i.test(s)) return s;
+    s = s.replace(/\bPet Supplies\b/gi, "").replace(/\bPet Supply\b/gi, "").replace(/\bCat Supplies\b/gi, "")
+      .replace(/\bDog Supplies\b/gi, "").replace(/\bNew\b/gi, "").replace(/\s{2,}/g, " ").trim();
+    const swaps = [
+      [/\bSmart Feeder(?:\s+Timing)?\b/i, "Smart fôrautomat med timer"],
+      [/\bWarm pet house\b/i, "Varmt kjæledyrhus"],
+      [/\bPortable Cleaning Care\b/i, "Portabelt rensesett"],
+      [/\bCat Toys Small Dog\b/i, "Leker til katt og liten hund"],
+      [/\bBack Seat Pet Guardrail\b/i, "Sikkerhetsgitter til baksete"],
+      [/\bAnti-eating\b/i, "Halskrage mot slikking"],
+      [/\bDog Poop Bag\b/i, "Bæsjeposer til hund"],
+      [/\bPoop Bag\b/i, "Bæsjeposer"],
+      [/\bCowboy Horseback Riding Costume\b/i, "Kostyme – cowboy"],
+      [/\bPet molar supplies\b/i, "Tyggeleke"],
+      [/\bUltrasonic Bark Stop\b/i, "Ultralyd mot bjeffing"],
+      [/\bPortable Ladder\b/i, "Portabel stige"],
+      [/\bWarm Detachable Kennel\b/i, "Varmt avtagbart hundehus"],
+      [/\bCat Hair Cleaner\b/i, "Rulle for dyrehår"],
+      [/\bDog Bag\b/i, "Bæretaske til hund"],
+      [/\bkeychain\b/i, "Nøkkelring"],
+      [/\bHamster Toy House\b/i, "Lekehus til hamster"],
+      [/\bPolyester Collar\b/i, "Halsbånd i polyester"],
+      [/\bDog Food Set\b/i, "Hundeskål-sett"],
+      [/\bInteractive Training\b/i, "Interaktiv tyggeleke"],
+      [/\bCollapsible Channel Cat Toys\b/i, "Sammenleggbar leketunnel til katt"],
+      [/\bAnti Overturning Rice Pot\b/i, "Stabil matskål"],
+      [/\bantibacterial dog oral deodorant\b/i, "Munnpleie til hund"],
+      [/\bRetractable Adjustable Dog Leash\b/i, "Uttrekkbart hundebeide"],
+      [/\bCollar Bark Stop\b/i, "Halsbånd mot bjeffing"],
+      [/\bCeramic Cat Bowl\b/i, "Keramikkskål til katt"],
+      [/\bBalcony Hanging Pet Bed\b/i, "Hengende katteseng"],
+      [/\bStool Bag Dispenser\b/i, "Dispenser til bæsjeposer"],
+      [/\bDog Jumper\b/i, "Hundegenser"],
+      [/\bClip Poopers\b/i, "Hentesaks til bæsj"],
+      [/\bMug\b/i, "Krus"],
+      [/\bPoster\b/i, "Plakat"],
+      [/\bTote\b/i, "Handlenett"],
+      [/\bHoodie\b/i, "Hettegenser"],
+      [/\bTee\b/i, "T-skjorte"],
+      [/\bNotebook\b/i, "Notatbok"],
+      [/\bSticker\b/i, "Klistremerke"]
+    ];
+    for (const [rx, nb] of swaps) s = s.replace(rx, nb);
+    s = s.replace(/\bPet\b/gi, "").replace(/\s{2,}/g, " ").replace(/^[-–·\s]+|[-–·\s]+$/g, "").trim();
+    return s || "Produkt";
+  }
 
   window.nordicCatalogs = { cj: [], printify: [], gelato: [], printful: [] };
   window.nordicActiveSupplier = "cj";
@@ -94,21 +171,22 @@
        the UI uses their last 15 digits and the full id stays a string in externalId / cjPid. */
     const tail = /^\d+$/.test(rawId) ? (Number.isSafeInteger(Number(rawId)) ? Number(rawId) : Number(rawId.slice(-15))) : 0;
     const numericId = tail > 0 ? tail : null;
+    const rawName = item.name || item.nameEn || "";
     const out = {
       id: numericId != null ? numericId : baseId + index,
       externalId: String(item.id || item.gelatoProductUid || item.printfulProductId || item.printifyProductId || ""),
-      name: item.name || (LABELS[provider] || "Supplier") + " product",
+      name: displayNameNb(rawName),
       cat: item.category || item.cat || category,
       base: nok > 0 ? nok / NOK_PER_EUR : 0,
       priceNok: nok,
       v: "v" + ((index % 4) + 1),
-      tag: LABELS[provider] || provider,
-      brand: item.brand || LABELS[provider] || provider,
+      tag: "", /* filled with category label before storefront render — never a supplier name */
+      brand: "Animedel",
       image: item.image || "",
       sku: item.sku || "",
-      supplier: item.supplier || LABELS[provider] || provider,
+      supplier: provider, /* internal key only; not shown in UI */
       provider: provider,
-      badgeColor: BRAND_COLORS[provider] || "#334155"
+      badgeColor: BRAND_COLORS[provider] || "#E07A5F"
     };
     if (item.printifyProductId) out.printifyProductId = item.printifyProductId;
     if (item.printifyVariantId) out.printifyVariantId = item.printifyVariantId;
@@ -171,7 +249,7 @@
         if (Array.isArray(payload.products) && payload.products.length) {
           return payload.products
             .filter(allowed)
-            .map((item, index) => curated({ ...item, brand: item.brand || "CJ Dropshipping", supplier: item.supplier || "CJ Dropshipping" }, index, config.category, "cj"))
+            .map((item, index) => curated(item, index, config.category, "cj"))
             .filter(item => item.base > 0)
             .slice(0, 600); // curated set (150) + trend winners
         }
@@ -245,9 +323,17 @@
     const raw = String(item.cat || "").trim();
     const key = raw.toLowerCase();
     if (cfg.catMap && cfg.catMap[key]) return cfg.catMap[key];
-    /* CJ "category" is only the store sector / search word (e.g. "beauty"): use the store's own category name. */
-    if (provider === "cj" || !key || key === String(cfg.query || "").toLowerCase() || key === podQuery(cfg.query)) return cfg.category || raw;
     if (CAT_NB[key]) return CAT_NB[key];
+    /* Already a Norwegian store category (local curated JSON). */
+    if (/[æøåÆØÅ]/.test(raw) || /^(Hundeleker|Kattehjørnet|Senger og tepper|Fôring|Tur og pelsstell|Smådyr|Tilbehør|Klær|Krus|Plakater|Vesker|Papirvarer|Dyreutstyr)$/i.test(raw)) {
+      return raw;
+    }
+    const inferred = inferPetCategory((item.name || "") + " " + raw, "");
+    if (inferred) return inferred;
+    /* CJ "category" is often only the store sector / search word: fall back to store category or inference. */
+    if (provider === "cj" || !key || key === String(cfg.query || "").toLowerCase() || key === podQuery(cfg.query)) {
+      return inferPetCategory(item.name || "", cfg.category || "Dyreutstyr");
+    }
     if (provider === "printful" || provider === "gelato") return podCategory(item);
     return raw;
   }

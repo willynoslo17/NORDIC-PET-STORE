@@ -14,8 +14,10 @@
     marketing: "kontakt@animedel.no"
   };
   /* Betaling midlertidig stengt. Sett til true for å åpne kassen igjen
-     (og CHECKOUT_ENABLED i functions/api/create-checkout-session.ts). */
+     (hold i synk med STORE.checkoutEnabled i functions/_shared/store.ts
+     og CHECKOUT_ENABLED i functions/api/create-checkout-session.ts). */
   const CHECKOUT_ENABLED = false;
+  const FREE_SHIPPING_NOK = 599;
   let started = false;
 
   function read(key, fallback) {
@@ -143,7 +145,9 @@
       const notice = document.createElement("p");
       notice.id = "nordicPriceNotice";
       notice.style.cssText = "font-size:12px;line-height:1.5;opacity:.72;margin:0 0 14px";
-      notice.innerHTML = 'Alle priser i NOK er inkl. 25 % MVA. Frakt 79 kr per ordre i Norge. Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">14 dagers angrerett</a>.';
+      notice.innerHTML = CHECKOUT_ENABLED
+        ? 'Alle priser i NOK er inkl. 25 % MVA. Gratis frakt fra ' + FREE_SHIPPING_NOK + ' kr (ellers 79 kr) i Norge. Totalpris vises før betaling. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/angrerett">Angrerett</a> · <a href="/kontakt">Kontakt</a>.'
+        : 'Alle priser i NOK er inkl. 25 % MVA. <strong>Betaling er ikke aktiv ennå</strong> — vi belaster ikke før lager, levering og produktsikkerhet er verifisert for hver vare. Gratis frakt fra ' + FREE_SHIPPING_NOK + ' kr. <a href="/frakt-og-levering">Leveringstid</a> · <a href="/kontakt">Kontakt</a>.';
       grid.parentNode.insertBefore(notice, grid);
     }
     const schema = document.createElement("script");
@@ -170,39 +174,64 @@
   function closeInfo() { document.getElementById("nordicInfo").classList.remove("open"); }
 
   function enhanceCheckout() {
+    const countrySelect = document.getElementById("country");
+    if (countrySelect) {
+      countrySelect.innerHTML = '<option value="Norway" selected>Norge</option>';
+    }
     if (!CHECKOUT_ENABLED) {
       const trigger = document.querySelector(".drawer .checkout");
-      if (trigger) { trigger.disabled = true; trigger.onclick = null; }
+      if (trigger) {
+        trigger.textContent = "Betaling kommer snart";
+        trigger.setAttribute("aria-disabled", "true");
+        trigger.onclick = () => {
+          if (!Object.keys(cartObject()).length) return;
+          alert("Betaling er ikke aktiv ennå. Vi belaster ikke før lager, levering og produktsikkerhet er verifisert for hver vare.\n\nKontakt " + CONTACT_EMAILS.orders + " eller " + CONTACT_EMAILS.support + ".");
+        };
+      }
       const pausedForm = document.getElementById("checkoutForm");
-      if (pausedForm) pausedForm.onsubmit = event => { event.preventDefault(); };
+      if (pausedForm) {
+        const button = pausedForm.querySelector('[type="submit"]');
+        if (button) {
+          button.textContent = "Betaling ikke aktiv ennå";
+          button.disabled = true;
+        }
+        const offNotice = '<div class="full notice nordic-precontract">Betaling er av. Animedel belaster ikke før lager, levering og produktsikkerhet er verifisert for hver vare. Spørsmål: <a href="mailto:'+esc(CONTACT_EMAILS.orders)+'">'+esc(CONTACT_EMAILS.orders)+'</a> · <a href="/kontakt">Kontakt</a>.</div>';
+        const oldOff = pausedForm.querySelector(".notice");
+        if (oldOff) oldOff.outerHTML = offNotice; else if (button) button.insertAdjacentHTML("beforebegin", offNotice);
+        pausedForm.onsubmit = event => { event.preventDefault(); };
+      }
       return;
     }
     let form = document.getElementById("checkoutForm");
     if (!form) {
-      document.body.insertAdjacentHTML("beforeend", '<div class="nordic-info" id="checkoutModal"><section class="nordic-info-card"><button type="button" id="checkoutClose">Lukk</button><h2>Leveringsopplysninger</h2><form id="checkoutForm" class="formgrid"><input required name="name" placeholder="Fullt navn"><input required type="email" name="email" placeholder="E-post"><input required name="phone" placeholder="Telefon"><input required name="city" placeholder="Sted"><input required class="full" name="address" placeholder="Adresse"><select required name="country" class="full"><option value="Norway">Norge</option></select><button class="checkout full" type="submit">GÅ TIL BETALING</button></form><div id="success" style="display:none"></div></section></div>');
+      document.body.insertAdjacentHTML("beforeend", '<div class="nordic-info" id="checkoutModal"><section class="nordic-info-card"><button type="button" id="checkoutClose">Lukk</button><h2>Leveringsopplysninger</h2><form id="checkoutForm" class="formgrid"><input required name="name" placeholder="Fullt navn"><input required type="email" name="email" placeholder="E-post"><input required name="phone" placeholder="Telefon"><input required name="city" placeholder="Sted"><input required class="full" name="address" placeholder="Adresse"><select required name="country" class="full"><option value="Norway">Norge</option></select><button class="checkout full" type="submit">Gå til betaling</button></form><div id="success" style="display:none"></div></section></div>');
       form = document.getElementById("checkoutForm");
       document.getElementById("checkoutClose").onclick = () => document.getElementById("checkoutModal").classList.remove("open");
     }
     const trigger = document.querySelector(".drawer .checkout");
-    if (trigger) trigger.onclick = () => {
-      if (!Object.keys(cartObject()).length) return;
-      const modal = document.getElementById("checkoutModal") || document.getElementById("modal");
-      if (!modal) return;
-      document.getElementById("drawer")?.classList.remove("open");
-      modal.classList.add("open", "show");
-      document.getElementById("overlay")?.classList.add("show");
-    };
+    if (trigger) {
+      trigger.textContent = "Gå til kassen";
+      trigger.onclick = () => {
+        if (!Object.keys(cartObject()).length) return;
+        const modal = document.getElementById("checkoutModal") || document.getElementById("modal");
+        if (!modal) return;
+        document.getElementById("drawer")?.classList.remove("open");
+        modal.classList.add("open", "show");
+        document.getElementById("overlay")?.classList.add("show");
+      };
+    }
     if (form.dataset.enhanced) return;
     form.dataset.enhanced = "true";
     const button = form.querySelector('[type="submit"]');
-    button.textContent = "BETAL SIKKERT MED STRIPE";
-    const summary = '<div class="full notice nordic-precontract">Du sendes til Stripe Checkout for sikker betaling. Selger: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). Totalpris inkl. 25 % MVA og frakt (79 kr i Norge) vises før du betaler. Estimert levering 5–20 virkedager. 14 dagers angrerett – du betaler selv returfrakten.</div>';
+    button.textContent = "Betal sikkert med Stripe";
+    const summary = '<div class="full notice nordic-precontract">Du sendes til Stripe Checkout for sikker betaling. Selger: '+BRAND+' (Martinez Lozano Internasjonal Handel, org.nr 935 407 095 MVA). Totalpris inkl. 25 % MVA og frakt (gratis fra '+FREE_SHIPPING_NOK+' kr, ellers 79 kr i Norge) vises før du betaler. Estimert levering 5–20 virkedager. 30 dagers retur · lovbestemt 14 dagers angrerett.</div>';
     const oldNotice = form.querySelector(".notice");
     if (oldNotice) oldNotice.outerHTML = summary; else button.insertAdjacentHTML("beforebegin", summary);
     const L = (href, text) => '<a href="'+href+'" target="_blank" rel="noopener">'+text+'</a>';
     button.insertAdjacentHTML("beforebegin", '<label class="full nordic-consent"><input required type="checkbox" name="terms"> <span>Jeg godtar '+L("/kjopsvilkar","kjøpsvilkårene")+' og har lest informasjonen om '+L("/angrerett","angrerett")+' (med '+L("/angreskjema","angreskjema")+') og '+L("/personvern","personvern")+'.</span></label>');
     form.onsubmit = async event => {
       event.preventDefault();
+      if (!CHECKOUT_ENABLED) return;
       if (!form.reportValidity()) return;
       const items = Object.entries(cartObject()).map(([id, quantity]) => {
         const item = catalogProductById(id) || {};

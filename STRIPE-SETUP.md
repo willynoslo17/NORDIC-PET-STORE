@@ -1,6 +1,8 @@
-# Stripe setup for nordic-pet-store
+# Stripe setup for nordic-pet-store (Animedel only)
 
-Required Cloudflare Pages production environment variables (do not commit secrets):
+**Checkout is currently off.** `STORE.checkoutEnabled` in `functions/_shared/store.ts` and `CHECKOUT_ENABLED` in `commerce-runtime.js` / `create-checkout-session.ts` are `false`. Do not enable charging until each pet SKU has verified supplier stock, delivery and product compliance. Setting Stripe env vars alone does not turn checkout on.
+
+Required Cloudflare Pages production environment variables (do not commit secrets; never invent placeholder keys):
 
 - `STRIPE_SECRET_KEY` — live secret key starting with `sk_live_`
 - `STRIPE_WEBHOOK_SECRET` — webhook signing secret from Stripe
@@ -16,20 +18,22 @@ Checkout session API:
 
 `POST /api/create-checkout-session`
 
-## POD supplier APIs (Cloudflare Pages / Netlify env)
+## POD / CJ supplier APIs (Cloudflare Pages / Netlify env)
 
-Free dashboard keys — no test/placeholder mode. Leave unset for empty POD catalogs; set for live API with local `[]` fallback:
+Use **real** dashboard keys only — no invented, test or placeholder tokens in the repo. Leave unset for empty POD catalogs; set for live API with local `[]` fallback:
 
+- `CJ_API_KEY` — CJ Dropshipping API key (optional until live sourcing).
 - `PRINTIFY_API_TOKEN` — Printify personal access token (shop products). Optional `PRINTIFY_SHOP_ID` (default `28847802`).
 - `GELATO_API_KEY` — Gelato API key (`X-API-KEY`). Optional `GELATO_STORE_ID` for priced ecommerce store products.
 - `PRINTFUL_API_TOKEN` — Printful private/OAuth token. Optional `PRINTFUL_STORE_ID` (`X-PF-Store-Id`) for account-level tokens.
 
 Catalog endpoints: `/api/printify-products`, `/api/gelato-products`, `/api/printful-products` (same live-with-local-fallback model as CJ).
-Storefront keeps suppliers separate via switcher (CJ | Printify | Gelato | Printful); catalogs are never blended into one array.
+When Gelato has no sellable products (missing key, no images, or no cost), `/api/gelato-products` returns HTTP 200 with `products: []` so the storefront skips Gelato quietly.
 
 ## Checkout v2 (shipping address, supplier IDs, paid-only webhook)
 
-- Stripe Checkout collects a **shipping address** (NO/EEA, EU-27, GB, CH, US, CA, PE) and a **phone number**.
+- Stripe Checkout collects a **shipping address** (Norway only for this storefront) and a **phone number**.
+- Free standard shipping in Norway when merchandise subtotal is **599 NOK** or more (otherwise 79 NOK).
 - Subscribe the webhook to `checkout.session.completed` **and** `checkout.session.async_payment_succeeded`.
   Only sessions with `payment_status = paid` and `metadata.store = nordic-pet-store` are forwarded to `MAKE_ORDERS_WEBHOOK`.
 - Payload schema `nordic-order/v2`: per-line provider, sku, quantity and supplier IDs, `groups`, `providers`, `missing_ids`,
@@ -39,4 +43,3 @@ Storefront keeps suppliers separate via switcher (CJ | Printify | Gelato | Print
 - CJ lines: the default variant `vid` is resolved at checkout with `CJ_API_KEY`. Stores without the key ask
   `https://nordic-beauty-perfumes.pages.dev/api/cj-variant`. If that fails, the line is listed in `missing_ids`.
 - `/api/order` is retired (HTTP 410) and no longer posts to Make.
-
