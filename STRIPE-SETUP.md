@@ -6,7 +6,8 @@ Required Cloudflare Pages production environment variables (do not commit secret
 
 - `STRIPE_SECRET_KEY` — live secret key starting with `sk_live_`
 - `STRIPE_WEBHOOK_SECRET` — webhook signing secret from Stripe
-- `MAKE_ORDERS_WEBHOOK` — Make.com / automation webhook URL
+- `MAKE_ORDERS_WEBHOOK` — order inbox webhook URL (will be `https://ml-inbox.willynoslo17.workers.dev/nordic`)
+- `ML_STORE_KEY` — secret store key sent as `x-store-key` when forwarding `nordic-order/v2` to the inbox
 
 Stripe webhook endpoint URL after deploy:
 

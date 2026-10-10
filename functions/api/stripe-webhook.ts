@@ -8,6 +8,7 @@ type Env = {
   STRIPE_WEBHOOK_SECRET?: string;
   STRIPE_SECRET_KEY?: string;
   MAKE_ORDERS_WEBHOOK?: string;
+  ML_STORE_KEY?: string;
   CJ_API_KEY?: string;
   BREVO_API_KEY?: string;
 };
@@ -155,7 +156,8 @@ async function afterPurchase(session: Record<string, any>, env: Env) {
 export async function onRequestPost(context: { request: Request; env: Env; waitUntil?: (promise: Promise<unknown>) => void }) {
   const secret = context.env.STRIPE_WEBHOOK_SECRET;
   const makeHook = context.env.MAKE_ORDERS_WEBHOOK;
-  if (!secret || !makeHook) return Response.json({ error: "Webhook not configured" }, { status: 503 });
+  const storeKey = context.env.ML_STORE_KEY;
+  if (!secret || !makeHook || !storeKey) return Response.json({ error: "Webhook not configured" }, { status: 503 });
 
   const payload = await context.request.text();
   const signature = context.request.headers.get("stripe-signature") || "";
@@ -198,7 +200,10 @@ export async function onRequestPost(context: { request: Request; env: Env; waitU
   const order = await withProviderOrders(buildOrderPayload(event as Record<string, unknown>, session, lineItems), lineItems, context.env);
   const response = await fetch(makeHook, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: {
+      "content-type": "application/json",
+      "x-store-key": context.env.ML_STORE_KEY || "",
+    },
     body: JSON.stringify(order),
   });
   if (!response.ok) return Response.json({ error: "Automation unavailable" }, { status: 502 });
