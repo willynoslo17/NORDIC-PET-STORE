@@ -5,7 +5,7 @@
     "query": "pet supplies",
     "catalogMode": "live-curated-winners",
     "storefrontCap": 150,
-    "note": "Live CJ API curated to top ~120–150 winners (listedNum/sales/price/EU cues). totalRecords may stay high in meta; products[] is capped for boutique storefront."
+    "note": "Live catalog curated to a capped boutique set. totalRecords may stay high in meta; products[] is capped for the storefront."
   },
   "germanDrop": {
     "enabled": true,
@@ -19,7 +19,7 @@
     "shopId": "28847802",
     "catalogMode": "live-sector-with-selected",
     "catalogFile": "catalog/printify-selected.json",
-    "note": "Sector-filtered Printify catalog mirrors CJ q=; printify-selected.json is the per-store curated set (~12 items). Printify left as-is this ship. Printify left as-is this ship. Printify left as-is this ship. Printify left as-is this ship.",
+    "note": "Sector-filtered catalog. The local selected file is the curated set. Left as-is this ship.",
     "sectorQuery": "pet supplies",
     "matchTypes": [
       "tote",
@@ -30,14 +30,14 @@
     "enabled": false,
     "catalogMode": "live-api-primary",
     "catalogFile": "catalog/gelato-products.json",
-    "note": "Live Gelato API via GELATO_API_KEY (store first, then public catalog). Local JSON is empty fallback only — never selected clones.",
+    "note": "Live API via the store env key (store first, then public catalog). Local JSON is empty fallback only — never selected clones.",
     "sectorQuery": "pet supplies"
   },
   "printful": {
     "enabled": false,
     "catalogMode": "live-api-primary",
     "catalogFile": "catalog/printful-products.json",
-    "note": "Live Printful API via PRINTFUL_API_TOKEN (store first, then public catalog). Local JSON is empty fallback only — never selected clones.",
+    "note": "Live API via the store env key (store first, then public catalog). Local JSON is empty fallback only — never selected clones.",
     "sectorQuery": "pet supplies"
   }
 }

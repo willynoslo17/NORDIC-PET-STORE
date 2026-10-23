@@ -39,7 +39,6 @@
     printful: "catalog/printful-products.json"
   };
   const ID_BASE = { cj: 10001, printify: 20001, gelato: 30001, printful: 40001 };
-  const LABELS = { cj: "CJ", printify: "Printify", gelato: "Gelato", printful: "Printful" };
   /** A slow supplier endpoint never blocks the grid: after this many ms its local fallback is used instead. */
   const SOURCE_TIMEOUT_MS = 8000;
   /** Gelato (live prices from the Gelato API) loads in the background and may take longer; it never delays readiness. */
@@ -95,9 +94,16 @@
     if (hit) return hit[1];
     return fallback !== undefined ? fallback : "Dyreutstyr";
   }
+  /** Customer-facing titles never include a sourcing brand. */
+  function stripSupplierWords(value) {
+    return String(value || "")
+      .replace(/\b(cj(?:\s*dropshipping)?|printify|gelato|printful|dropi)\b/gi, " ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
   /** Light Norwegian cleanup for English pet titles from live supplier APIs. */
   function displayNameNb(name) {
-    let s = String(name || "").trim();
+    let s = stripSupplierWords(name);
     if (!s) return "Produkt";
     if (/[æøåÆØÅ]/.test(s) || /\b(krus|plakat|hund|katt|skål|bånd|seng|leke|fôr|handlenett|hettegenser|notatbok|klistremerke)\b/i.test(s)) return s;
     s = s.replace(/\bPet Supplies\b/gi, "").replace(/\bPet Supply\b/gi, "").replace(/\bCat Supplies\b/gi, "")
@@ -411,7 +417,7 @@
       .catch(() => [])
       .then(list => {
         window.nordicCatalogs[key] = (Array.isArray(list) ? list : [])
-          .map(item => { const cat = catLabel(item, key, cfg); return { ...item, cat, tag: cat }; })
+          .map(item => { const cat = stripSupplierWords(catLabel(item, key, cfg)) || (cfg.category || "Dyreutstyr"); return { ...item, cat, tag: cat }; })
           .filter(keep);
         applyStorefront();
       });
