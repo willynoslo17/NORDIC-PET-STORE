@@ -152,8 +152,8 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
       { checkoutEnabled: false, store: STORE.slug },
     );
   }
-  if (!context.env.STRIPE_SECRET_KEY?.startsWith("sk_live_")) {
-    return json("Live payments are not configured", 503);
+  if (!context.env.STRIPE_SECRET_KEY?.startsWith("sk_test_")) {
+    return json("Test-mode payments are not configured (expects sk_test_)", 503);
   }
 
   let body: CheckoutPayload;
