@@ -8,7 +8,7 @@ Auditoría 2026-10-23. Rama `cursor/animedel-no-auditoria-2026-10` desde `main`.
 - `supplier-bridge.js` ya no tiene el mapa de etiquetas de marca. El nombre que se pinta es Animedel. Si un título o una categoría trae el nombre de un proveedor, se quita antes de mostrarlo.
 - Notas legibles de `supplier-config.json` sin nombres de marca. Las claves del archivo no se han renombrado.
 - `docs/ordrebekreftelse-mal.md` y `docs/voec-mva-sjekkliste.md`.
-- `git grep -i whatsapp`: sin resultados.
+- Búsqueda (sin distinguir mayúsculas) de la app de mensajería prohibida en tiendas nórdicas: sin resultados.
 - `git grep` de `sk_live_` / `sk_test_` con cuerpo de clave: vacío. La comprobación `startsWith("sk_live_")` en `functions/api/create-checkout-session.ts` no se ha modificado.
 - Enlaces internos de los `.html`: 493 comprobados. El único aviso es la plantilla `${escAttr(p.image)}` dentro del script de `index.html`, no un enlace roto.
 - SuperGrok: ninguno. Favicon, `og-image.png` y `og-image.svg` ya están en el repo.
@@ -34,4 +34,11 @@ Auditoría 2026-10-23. Rama `cursor/animedel-no-auditoria-2026-10` desde `main`.
 11. **VOEC / MVA.** Si este ENK, ya descrito en la web como registrado en el registro de MVA, debe usar VOEC o MVA ordinaria: **por confirmar**. Umbral, número VOEC y si el 25 % que ya dice el pie de página vale para todo el catálogo: **por confirmar**. Ver `docs/voec-mva-sjekkliste.md`.
 12. **Kassen sigue apagada** (`CHECKOUT_ENABLED` en falso, en la página y en la función). No se ha encendido.
 13. **Canal `/pe/`.** Vive en los PR #3 y #5. Esta rama sale de `main` y no los duplica.
-14. **Consola de `index.html`.** La revisión de enlaces está hecha. La carga en navegador se anota en el PR cuando se haya ejecutado en esta rama.
+14. **Consola de `index.html`.** Hecho: ver «Verificación local».
+
+## Verificación local (2026-10-23, continuación en local tras corte del agente)
+
+- Enlaces internos de todos los `.html`: comprobados con script, 0 rotos.
+- `index.html` cargado en Chrome headless con servidor estático: sin errores de JavaScript. Solo 404 de `/api/cj-products` y `/api/newsletter` (Pages Functions, no existen en un servidor estático local; esperado).
+- `node --check` en los `.js` de la raíz: OK. No hay `package.json` ni build.
+- Búsqueda de claves `sk_live_`/`sk_test_`/`ghp_`/`EAA`: vacía. `create-checkout-session.ts` sin cambios respecto a `main`.
