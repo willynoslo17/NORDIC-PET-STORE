@@ -16,7 +16,7 @@ Stripe Checkout is **intentionally disabled** (`STORE.checkoutEnabled = false` i
 2. **Delivery** — destination coverage, shipping quote and expected lead time  
 3. **Compliance** — product safety / regulatory fit for pet goods (manufacturer, responsible economic operator, warnings, VAT treatment, return address)
 
-Also required before turning charging on: a live payment provider (`STRIPE_SECRET_KEY` with `sk_live_…`) and a working order webhook. Record the checks per SKU before flipping `checkoutEnabled` / `CHECKOUT_ENABLED` to `true`.
+Also required before turning charging on: a payment provider in Stripe test mode (`STRIPE_SECRET_KEY` with `sk_test_…`) and a working order webhook. Record the checks per SKU before flipping `checkoutEnabled` / `CHECKOUT_ENABLED` to `true`.
 
 Until then the storefront stays in **non-charging browse mode** (catalog and cart UI may work; payment does not).
 

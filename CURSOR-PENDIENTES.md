@@ -23,7 +23,7 @@ Auditoría 2026-10-23. Rama `cursor/animedel-no-auditoria-2026-10` desde `main`.
    - Munnpleie til hund — `4A1B657F-AFCD-4B31-AA28-123AB226D4B0` / `CJJJJTJT41045`
    - Lekehus til hamster — `1356505664368807936` / `CJJT1004053`
    - El resto de los 30 productos del mismo archivo, y el conjunto en vivo, igual: **por confirmar**.
-3. **Pasar Stripe de `sk_live_` a modo de prueba.** Decisión del dueño. La comprobación sigue igual. No se ha ejecutado ningún pago.
+3. **Stripe → modo prueba:** hecho con OK del dueño (2026-10-23); el código exige `sk_test_`.
 4. **Nombre del proyecto en Cloudflare Pages.** No hay workflow ni `wrangler.toml`. El despliegue está fuera del repo. `netlify.toml` y `_redirects` no se han tocado.
 5. **Fotos de producto.** Las URL de `catalog/selected-products.json` apuntan a un host cuyo nombre incluye al proveedor. No se sustituyen: las imágenes las pone el dueño. Hasta que el archivo nuevo esté en el repo, la referencia actual se queda.
 6. **SKU.** Varios empiezan por las letras del proveedor. No salen en la ficha. No se han cambiado, porque el emparejado del checkout usa ese código.
